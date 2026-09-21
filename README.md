@@ -1,6 +1,6 @@
 # PowerSplash
 
-A growth-based survival game built in Unity 6.3 (URP), created for DMET 909, Assignment 1.
+A growth-based survival game built in Unity 6.3 (URP), created for DMET 909.
 
 ## About the Game
 
