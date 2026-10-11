@@ -191,10 +191,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jelly Fish
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c9a26f82df8bac54bb94e77b0fab6845, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c9a26f82df8bac54bb94e77b0fab6845, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1532536152}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c9a26f82df8bac54bb94e77b0fab6845, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1532536151}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c9a26f82df8bac54bb94e77b0fab6845, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1532536150}
   m_SourcePrefab: {fileID: 100100000, guid: c9a26f82df8bac54bb94e77b0fab6845, type: 3}
 --- !u!1001 &88176715
 PrefabInstance:
@@ -207,6 +220,10 @@ PrefabInstance:
     - target: {fileID: -959585127282625498, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Red porgy_1_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: -959585127282625498, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3454488547625306721, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
       propertyPath: m_LocalScale.x
@@ -263,7 +280,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -959585127282625498, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1151706349}
+    - targetCorrespondingSourceObject: {fileID: -959585127282625498, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1151706348}
+    - targetCorrespondingSourceObject: {fileID: -959585127282625498, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1151706350}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
 --- !u!4 &115145467 stripped
 Transform:
@@ -333,6 +359,10 @@ PrefabInstance:
     - target: {fileID: 7288834100035718147, guid: c4b8120eb53b67e49b4b651a6fc380e8, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Tang Blue_1_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288834100035718147, guid: c4b8120eb53b67e49b4b651a6fc380e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -478,6 +508,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Anglerfish_Final
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad9f709543e896343bf1caaba5fdcf2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -535,6 +569,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fish (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc3e7be6a9c88014287be509547f3e55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1404018469849995218, guid: dc3e7be6a9c88014287be509547f3e55, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -548,6 +586,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3e7be6a9c88014287be509547f3e55, type: 3}
+--- !u!1 &314891976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6295199908750376532, guid: ad7149b6022bde944bcd07f5a6a6602f, type: 3}
+  m_PrefabInstance: {fileID: 1142288583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &320439766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6112117584751340982, guid: c4b8120eb53b67e49b4b651a6fc380e8, type: 3}
@@ -605,11 +648,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Big_Shark White_1_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 1256707772413658591, guid: d2c23aae5aba02544a49efd9bf9ba91f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1256707772413658591, guid: d2c23aae5aba02544a49efd9bf9ba91f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1724041431}
+    - targetCorrespondingSourceObject: {fileID: 1256707772413658591, guid: d2c23aae5aba02544a49efd9bf9ba91f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1724041430}
+    - targetCorrespondingSourceObject: {fileID: 1256707772413658591, guid: d2c23aae5aba02544a49efd9bf9ba91f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1724041429}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: d2c23aae5aba02544a49efd9bf9ba91f, type: 3}
+--- !u!1 &323519954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1256707772413658591, guid: d2c23aae5aba02544a49efd9bf9ba91f, type: 3}
+  m_PrefabInstance: {fileID: 323519953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +863,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 931664be0eedd2841855e899b6f5aedc, type: 3}
       propertyPath: m_Name
       value: Fish (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 931664be0eedd2841855e899b6f5aedc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1004,6 +1069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Little_Seahorse_1_Base (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3896284978501847556, guid: 10d48f96a8de02a4aa74047f26cfdbdd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1013,6 +1082,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -5698659575472444908, guid: 10d48f96a8de02a4aa74047f26cfdbdd, type: 3}
   m_PrefabInstance: {fileID: 426766344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &440594343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3220524264567058742, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
+  m_PrefabInstance: {fileID: 1053398162}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &490429337
 PrefabInstance:
@@ -1077,6 +1151,10 @@ PrefabInstance:
     - target: {fileID: 3896284978501847556, guid: 10d48f96a8de02a4aa74047f26cfdbdd, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Seahorse_1_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896284978501847556, guid: 10d48f96a8de02a4aa74047f26cfdbdd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1146,6 +1224,10 @@ PrefabInstance:
     - target: {fileID: 3896284978501847556, guid: 10d48f96a8de02a4aa74047f26cfdbdd, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Seahorse_1_Base (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896284978501847556, guid: 10d48f96a8de02a4aa74047f26cfdbdd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1225,6 +1307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: shark+3d+model
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9d38b750dc6f7374cb9d2eb468b3624b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1256,6 +1342,14 @@ PrefabInstance:
     - target: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Tang Yellow_1_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9098679116569710, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
       propertyPath: m_LocalScale.x
@@ -1312,8 +1406,25 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113348942}
+    - targetCorrespondingSourceObject: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113348941}
+    - targetCorrespondingSourceObject: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113348940}
+    - targetCorrespondingSourceObject: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113348939}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+--- !u!1 &746861866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
+  m_PrefabInstance: {fileID: 1381743660}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &792768732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9d38b750dc6f7374cb9d2eb468b3624b, type: 3}
@@ -1382,6 +1493,10 @@ PrefabInstance:
     - target: {fileID: -4992258539547603055, guid: a2e84b78c6f883f44bbb10106b7829d7, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Starfish_1_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: -4992258539547603055, guid: a2e84b78c6f883f44bbb10106b7829d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1533,6 +1648,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Little_Eel_1_Base
       objectReference: {fileID: 0}
+    - target: {fileID: -1829769013492311585, guid: 53d3c45bafb7acb4782b860960b02c43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -1097759218283601434, guid: 53d3c45bafb7acb4782b860960b02c43, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1588,8 +1707,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -1829769013492311585, guid: 53d3c45bafb7acb4782b860960b02c43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1481677526}
+    - targetCorrespondingSourceObject: {fileID: -1829769013492311585, guid: 53d3c45bafb7acb4782b860960b02c43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1481677525}
+    - targetCorrespondingSourceObject: {fileID: -1829769013492311585, guid: 53d3c45bafb7acb4782b860960b02c43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1481677524}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 53d3c45bafb7acb4782b860960b02c43, type: 3}
+--- !u!1 &874527238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1829769013492311585, guid: 53d3c45bafb7acb4782b860960b02c43, type: 3}
+  m_PrefabInstance: {fileID: 874527237}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &875453904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 348b6d903771ae943b410880ea5bb65f, type: 3}
@@ -1651,6 +1784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fish
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 919adb6669764044b9c7284067eb2040, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1667,6 +1804,10 @@ PrefabInstance:
     - target: {fileID: -5933604135088111354, guid: 807ee66e241cf0649b52c9b6993216df, type: 3}
       propertyPath: m_Name
       value: Fishy1_3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5933604135088111354, guid: 807ee66e241cf0649b52c9b6993216df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8017782934652159077, guid: 807ee66e241cf0649b52c9b6993216df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1760,6 +1901,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -579463014693774929, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
   m_PrefabInstance: {fileID: 1053398162}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &948584642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440594343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44c9451cdbd8254a81f457df4624c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PredatorFish
+  alertRadius: 12
+  pursueRadius: 8
+  disengageRadius: 18
+  patrolSpeed: 3.5
+  pursueSpeed: 7
+  turnSpeed: 3
+  currentState: 0
+--- !u!114 &948584643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440594343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 0
+  grantedAbility: 2
+  sizeTier: 1
+  growthValue: 15
+--- !u!54 &948584644
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440594343}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &974156832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7319001001123854420, guid: 09bffd7d9ebbd82468b52bde43397512, type: 3}
@@ -1770,6 +1973,72 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ad9f709543e896343bf1caaba5fdcf2b, type: 3}
   m_PrefabInstance: {fileID: 264916839}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1005058620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5151535262532159291, guid: 09bffd7d9ebbd82468b52bde43397512, type: 3}
+  m_PrefabInstance: {fileID: 2036983617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1005058623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005058620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c691519f8ad7234eb7a425b7b508ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreyFish
+  swimSpeed: 3
+  turnSpeed: 2
+  wanderRadius: 25
+  directionChangeInterval: 5
+  eatenRangeThreshold: 3.5
+  panicSpeedMultiplier: 2
+--- !u!114 &1005058624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005058620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 0
+  grantedAbility: 0
+  sizeTier: 1
+  growthValue: 10
+--- !u!54 &1005058625
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005058620}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1015817551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3685fbf809b06eb48807c907c7dc797e, type: 3}
@@ -1844,10 +2113,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Little_Octopus_1_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 3220524264567058742, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3220524264567058742, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 948584644}
+    - targetCorrespondingSourceObject: {fileID: 3220524264567058742, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 948584643}
+    - targetCorrespondingSourceObject: {fileID: 3220524264567058742, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 948584642}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
 --- !u!4 &1058713258 stripped
 Transform:
@@ -2045,10 +2327,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Big_Dolphin_1
       objectReference: {fileID: 0}
+    - target: {fileID: 6295199908750376532, guid: ad7149b6022bde944bcd07f5a6a6602f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6295199908750376532, guid: ad7149b6022bde944bcd07f5a6a6602f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1962042237}
+    - targetCorrespondingSourceObject: {fileID: 6295199908750376532, guid: ad7149b6022bde944bcd07f5a6a6602f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1962042236}
+    - targetCorrespondingSourceObject: {fileID: 6295199908750376532, guid: ad7149b6022bde944bcd07f5a6a6602f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1962042235}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: ad7149b6022bde944bcd07f5a6a6602f, type: 3}
 --- !u!1001 &1143829059
 PrefabInstance:
@@ -2111,6 +2406,72 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: -4161369568681901532, guid: bffcb1423d331734da0e7567cdc366da, type: 3}
+--- !u!1 &1151706344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -959585127282625498, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
+  m_PrefabInstance: {fileID: 88176715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1151706348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151706344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 2
+  grantedAbility: 1
+  sizeTier: 2
+  growthValue: 15
+--- !u!54 &1151706349
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151706344}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1151706350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151706344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c691519f8ad7234eb7a425b7b508ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreyFish
+  swimSpeed: 3
+  turnSpeed: 2
+  wanderRadius: 25
+  directionChangeInterval: 5
+  eatenRangeThreshold: 3.5
+  panicSpeedMultiplier: 2
 --- !u!1001 &1178499090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2237,6 +2598,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Little_Crab_1_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 8771091787928289351, guid: 1f705a283f097fe44a380fd052b33f34, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2338,6 +2703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mr_grumpfish
       objectReference: {fileID: 0}
+    - target: {fileID: -6689036041284674117, guid: d8e7e35d039926349b29fea145a8b861, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: d8e7e35d039926349b29fea145a8b861, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.82563
@@ -2388,6 +2757,73 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d6622f9519b1ff41babf7b78325d025, type: 3}
   m_PrefabInstance: {fileID: 1446396113}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1348834964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1569242737957558695, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
+  m_PrefabInstance: {fileID: 1497581702}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1348834967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348834964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44c9451cdbd8254a81f457df4624c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PredatorFish
+  alertRadius: 12
+  pursueRadius: 8
+  disengageRadius: 18
+  patrolSpeed: 3.5
+  pursueSpeed: 7
+  turnSpeed: 3
+  currentState: 0
+--- !u!114 &1348834968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348834964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 1
+  grantedAbility: 0
+  sizeTier: 5
+  growthValue: 10
+--- !u!54 &1348834969
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348834964}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1381743660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2444,10 +2880,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: maya2sketchfab
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1911987475}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1911987474}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1911987473}
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
 --- !u!1 &1409360327
 GameObject:
@@ -2510,6 +2959,118 @@ Transform:
   - {fileID: 856883730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1421174073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421174077}
+  - component: {fileID: 1421174076}
+  - component: {fileID: 1421174075}
+  - component: {fileID: 1421174074}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1421174074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421174073}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1421174075
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421174073}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: cb4eb71c800f36d4e96bf0d1b7d6bcd9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1421174076
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421174073}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1421174077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421174073}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.1, y: 22.4, z: 59.7}
+  m_LocalScale: {x: 150, y: 75, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &1432569918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2640,6 +3201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fish
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d6622f9519b1ff41babf7b78325d025, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2741156996373366786, guid: 3d6622f9519b1ff41babf7b78325d025, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2658,6 +3223,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -1097759218283601434, guid: 53d3c45bafb7acb4782b860960b02c43, type: 3}
   m_PrefabInstance: {fileID: 874527237}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1481677524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874527238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c691519f8ad7234eb7a425b7b508ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreyFish
+  swimSpeed: 3
+  turnSpeed: 2
+  wanderRadius: 25
+  directionChangeInterval: 5
+  eatenRangeThreshold: 3.5
+  panicSpeedMultiplier: 2
+--- !u!54 &1481677525
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874527238}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1481677526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874527238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 2
+  grantedAbility: 3
+  sizeTier: 1
+  growthValue: 10
 --- !u!1001 &1497581702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2669,6 +3295,10 @@ PrefabInstance:
     - target: {fileID: 1569242737957558695, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Ray sting_1_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 1569242737957558695, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2698702154677693195, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
       propertyPath: m_LocalScale.x
@@ -2725,8 +3355,83 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1569242737957558695, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1348834969}
+    - targetCorrespondingSourceObject: {fileID: 1569242737957558695, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1348834968}
+    - targetCorrespondingSourceObject: {fileID: 1569242737957558695, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1348834967}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
+--- !u!1 &1532536147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c9a26f82df8bac54bb94e77b0fab6845, type: 3}
+  m_PrefabInstance: {fileID: 47241001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1532536150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532536147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c691519f8ad7234eb7a425b7b508ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreyFish
+  swimSpeed: 3
+  turnSpeed: 2
+  wanderRadius: 25
+  directionChangeInterval: 5
+  eatenRangeThreshold: 3.5
+  panicSpeedMultiplier: 2
+--- !u!114 &1532536151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532536147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 0
+  grantedAbility: 5
+  sizeTier: 1
+  growthValue: 15
+--- !u!54 &1532536152
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532536147}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1546784286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8017782934652159077, guid: 807ee66e241cf0649b52c9b6993216df, type: 3}
@@ -2754,10 +3459,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 168.6, y: 17.82, z: 84.2}
-  m_Center: {x: -1.25, y: -6.63, z: 28.31}
+  m_Center: {x: -1.25, y: -7.51, z: 28.31}
 --- !u!64 &1547320150
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2946,6 +3651,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -3425551174786326440, guid: d2c23aae5aba02544a49efd9bf9ba91f, type: 3}
   m_PrefabInstance: {fileID: 323519953}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1724041429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323519954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44c9451cdbd8254a81f457df4624c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PredatorFish
+  alertRadius: 12
+  pursueRadius: 8
+  disengageRadius: 18
+  patrolSpeed: 3.5
+  pursueSpeed: 7
+  turnSpeed: 3
+  currentState: 0
+--- !u!114 &1724041430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323519954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 1
+  grantedAbility: 0
+  sizeTier: 3
+  growthValue: 10
+--- !u!54 &1724041431
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323519954}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1766833009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3910990755373119420, guid: 1f705a283f097fe44a380fd052b33f34, type: 3}
@@ -2967,6 +3734,10 @@ PrefabInstance:
     - target: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Barracuda_1_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
       propertyPath: m_LocalScale.x
@@ -3019,8 +3790,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1931351608}
+    - targetCorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1931351607}
+    - targetCorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1931351606}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
+--- !u!1 &1844296356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
+  m_PrefabInstance: {fileID: 1844296355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1885004158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3032,6 +3817,10 @@ PrefabInstance:
     - target: {fileID: -891329230572840607, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
       propertyPath: m_Name
       value: Fishes_Little_Catfish_1_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: -891329230572840607, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5916300497414581626, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3076,18 +3865,217 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -891329230572840607, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1885004162}
+    - targetCorrespondingSourceObject: {fileID: -891329230572840607, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1885004161}
+    - targetCorrespondingSourceObject: {fileID: -891329230572840607, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1885004160}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
+--- !u!1 &1885004159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -891329230572840607, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
+  m_PrefabInstance: {fileID: 1885004158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885004160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885004159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44c9451cdbd8254a81f457df4624c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PredatorFish
+  alertRadius: 12
+  pursueRadius: 8
+  disengageRadius: 18
+  patrolSpeed: 3.5
+  pursueSpeed: 7
+  turnSpeed: 3
+  currentState: 0
+--- !u!114 &1885004161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885004159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 1
+  grantedAbility: 0
+  sizeTier: 2
+  growthValue: 10
+--- !u!54 &1885004162
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885004159}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1911987472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
   m_PrefabInstance: {fileID: 1381743660}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1911987473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746861866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c691519f8ad7234eb7a425b7b508ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreyFish
+  swimSpeed: 3
+  turnSpeed: 2
+  wanderRadius: 25
+  directionChangeInterval: 5
+  eatenRangeThreshold: 3.5
+  panicSpeedMultiplier: 2
+--- !u!114 &1911987474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746861866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 0
+  grantedAbility: 0
+  sizeTier: 1
+  growthValue: 10
+--- !u!54 &1911987475
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746861866}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1931351605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
   m_PrefabInstance: {fileID: 1844296355}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1931351606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844296356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44c9451cdbd8254a81f457df4624c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PredatorFish
+  alertRadius: 12
+  pursueRadius: 8
+  disengageRadius: 18
+  patrolSpeed: 3.5
+  pursueSpeed: 7
+  turnSpeed: 3
+  currentState: 0
+--- !u!114 &1931351607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844296356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 1
+  grantedAbility: 0
+  sizeTier: 2
+  growthValue: 10
+--- !u!54 &1931351608
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844296356}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1959236558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3162,6 +4150,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -5913951086215009126, guid: ad7149b6022bde944bcd07f5a6a6602f, type: 3}
   m_PrefabInstance: {fileID: 1142288583}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1962042235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314891976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c691519f8ad7234eb7a425b7b508ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreyFish
+  swimSpeed: 3
+  turnSpeed: 2
+  wanderRadius: 25
+  directionChangeInterval: 5
+  eatenRangeThreshold: 3.5
+  panicSpeedMultiplier: 2
+--- !u!114 &1962042236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314891976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 2
+  grantedAbility: 4
+  sizeTier: 1
+  growthValue: 15
+--- !u!54 &1962042237
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314891976}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1980620478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3214,11 +4263,115 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Big_Shark Hammerhead_1_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 6347537428391573176, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6347537428391573176, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1980620482}
+    - targetCorrespondingSourceObject: {fileID: 6347537428391573176, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1980620480}
+    - targetCorrespondingSourceObject: {fileID: 6347537428391573176, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1980620484}
+    - targetCorrespondingSourceObject: {fileID: 6347537428391573176, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1980620483}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+--- !u!1 &1980620479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6347537428391573176, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+  m_PrefabInstance: {fileID: 1980620478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1980620480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980620479}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.63, y: 1.89, z: 4.41}
+  m_Center: {x: -0.09, y: 0.27, z: -1.12}
+--- !u!54 &1980620482
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980620479}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 1.5
+  m_AngularDamping: 2
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 64
+  m_CollisionDetection: 0
+--- !u!114 &1980620483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980620479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44c9451cdbd8254a81f457df4624c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PredatorFish
+  alertRadius: 12
+  pursueRadius: 8
+  disengageRadius: 18
+  patrolSpeed: 3.5
+  pursueSpeed: 7
+  turnSpeed: 3
+  currentState: 0
+--- !u!114 &1980620484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980620479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 1
+  grantedAbility: 0
+  sizeTier: 4
+  growthValue: 10
 --- !u!1001 &1983603605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3282,6 +4435,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3685fbf809b06eb48807c907c7dc797e, type: 3}
       propertyPath: m_Name
       value: Fish 3_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3685fbf809b06eb48807c907c7dc797e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6684295394808222897, guid: 3685fbf809b06eb48807c907c7dc797e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -3378,6 +4535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Little_general_2_Base
       objectReference: {fileID: 0}
+    - target: {fileID: -6440681814241626239, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4925832618722024190, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -3443,6 +4604,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -6440681814241626239, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2011450125}
+    - targetCorrespondingSourceObject: {fileID: -6440681814241626239, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2011450129}
+    - targetCorrespondingSourceObject: {fileID: -6440681814241626239, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2011450128}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
 --- !u!1 &2011450120 stripped
 GameObject:
@@ -3512,13 +4679,42 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -22157419032081861, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
+--- !u!114 &2011450128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011450120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91080dca653f4b42bc0a715caaa0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEating
+  sizeGrowthScaleMultiplier: 0.05
+--- !u!114 &2011450129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011450120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 0
+  grantedAbility: 0
+  sizeTier: 1
+  growthValue: 10
 --- !u!1001 &2036983617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3583,16 +4779,112 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fishes_Little_general_3_Base
       objectReference: {fileID: 0}
+    - target: {fileID: -5151535262532159291, guid: 09bffd7d9ebbd82468b52bde43397512, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -5151535262532159291, guid: 09bffd7d9ebbd82468b52bde43397512, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005058625}
+    - targetCorrespondingSourceObject: {fileID: -5151535262532159291, guid: 09bffd7d9ebbd82468b52bde43397512, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005058624}
+    - targetCorrespondingSourceObject: {fileID: -5151535262532159291, guid: 09bffd7d9ebbd82468b52bde43397512, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005058623}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 09bffd7d9ebbd82468b52bde43397512, type: 3}
 --- !u!4 &2050353195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 919adb6669764044b9c7284067eb2040, type: 3}
   m_PrefabInstance: {fileID: 892328854}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2113348936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+  m_PrefabInstance: {fileID: 666364583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2113348939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113348936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91080dca653f4b42bc0a715caaa0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEating
+  sizeGrowthScaleMultiplier: 0.05
+--- !u!114 &2113348940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113348936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityData
+  creatureType: 0
+  grantedAbility: 0
+  sizeTier: 1
+  growthValue: 0
+--- !u!114 &2113348941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113348936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb031c192ff8de945ac0e47165bf639b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishMovement
+  normalSpeed: 8
+  sprintSpeed: 15
+  acceleration: 5
+  turnSpeed: 4
+  pitchSpeed: 3
+  bankAmount: 25
+  maxStamina: 100
+  currentStamina: 0
+  staminaDrainRate: 20
+  staminaRegenRate: 15
+--- !u!54 &2113348942
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113348936}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1070470754441483433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3666,3 +4958,4 @@ SceneRoots:
   - {fileID: 1070470754441483433}
   - {fileID: 938624908}
   - {fileID: 1409360328}
+  - {fileID: 1421174077}
