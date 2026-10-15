@@ -81,6 +81,9 @@ public class AbilitySystem : MonoBehaviour
         return new AbilityDef { type = t };
     }
 
+    /// <summary>Puts an ability back in the slot without the pickup message (used when a new level loads).</summary>
+    public void Restore(AbilityType t) { Stored = t; }
+
     public void Grant(AbilityType t)
     {
         if (t == AbilityType.None) return;

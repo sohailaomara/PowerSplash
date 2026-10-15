@@ -9,5 +9,7 @@ public static class PlayerInventory
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetStatics() { Pearls = 0; }
 
+    public static void Reset() { Pearls = 0; }
+
     public static void AddPearl() { Pearls = Mathf.Min(Pearls + 1, PearlsRequired); }
 }

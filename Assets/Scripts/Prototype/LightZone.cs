@@ -15,14 +15,15 @@ public class LightZone : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float targetDarkness = 1f;
     [SerializeField] private float fadeSeconds = 2.5f;
 
-    private const string DefaultZone = "Sunlit Reef";
+    // The surrounding area is simply the current level's location (Sunlit Reef, Open Water or The Deep)
+    private static string DefaultZone { get { return GameHUD.LocationName(PlayerProgress.SceneTier()); } }
     private BoxCollider box;
     private Transform player;
     private bool inside;
     private float current;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetStatics() { Darkness = 0f; CurrentZoneName = DefaultZone; }
+    private static void ResetStatics() { Darkness = 0f; CurrentZoneName = "Sunlit Reef"; }
 
     private void Awake()
     {
@@ -45,7 +46,7 @@ public class LightZone : MonoBehaviour
         {
             inside = nowInside;
             CurrentZoneName = inside ? zoneName : DefaultZone;
-            GameHUD.Message(inside ? "Entering " + zoneName + " - it gets dark. Press L for your flashlight" : "Back in the " + DefaultZone, 3.5f);
+            GameHUD.Message(inside ? "Entering " + zoneName + " - it gets dark. Press L for your flashlight" : "Back in " + DefaultZone, 3.5f);
         }
 
         current = Mathf.MoveTowards(current, inside ? targetDarkness : 0f, Time.deltaTime / Mathf.Max(0.05f, fadeSeconds));

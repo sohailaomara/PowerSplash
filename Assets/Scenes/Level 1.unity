@@ -1732,17 +1732,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   cycleSeconds: 120
-  startTime: 0.35
+  startTime: 0.45
   fastForward: 12
   dayColor: {r: 1, g: 0.97, b: 0.85, a: 1}
   duskColor: {r: 1, g: 0.5, b: 0.25, a: 1}
   nightColor: {r: 0.25, g: 0.35, b: 0.85, a: 1}
-  dayAmbient: {r: 0.25, g: 0.45, b: 0.55, a: 1}
+  dayAmbient: {r: 0.35, g: 0.6, b: 0.65, a: 1}
   nightAmbient: {r: 0.02, g: 0.04, b: 0.1, a: 1}
-  dayFog: {r: 0.1, g: 0.45, b: 0.6, a: 1}
+  dayFog: {r: 0.12, g: 0.62, b: 0.72, a: 1}
   nightFog: {r: 0.01, g: 0.03, b: 0.08, a: 1}
   underwaterLook: 1
-  baseFogDensity: 0.007
+  baseFogDensity: 0.005
+  levelDarkness: 0
+  sunMaxIntensity: 2.2
 --- !u!1 &421172832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,6 +2556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631578957}
   - component: {fileID: 631578958}
+  - component: {fileID: 631578959}
   m_Layer: 0
   m_Name: Clam Glow
   m_TagString: Untagged
@@ -2641,6 +2644,35 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &631578959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631578956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!4 &638316808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5698659575472444908, guid: 10d48f96a8de02a4aa74047f26cfdbdd, type: 3}
@@ -3877,25 +3909,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -579463014693774929, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
   m_PrefabInstance: {fileID: 1053398162}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &948584642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440594343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c44c9451cdbd8254a81f457df4624c40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PredatorFish
-  alertRadius: 12
-  pursueRadius: 8
-  disengageRadius: 18
-  patrolSpeed: 3.5
-  pursueSpeed: 7
-  turnSpeed: 3
-  currentState: 0
 --- !u!114 &948584643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3960,6 +3973,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.84346884
   m_Center: {x: -0.0000009536743, y: -0.45170712, z: -0.23407602}
+--- !u!114 &948584646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440594343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c691519f8ad7234eb7a425b7b508ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreyFish
+  swimSpeed: 3
+  turnSpeed: 2
+  wanderRadius: 25
+  directionChangeInterval: 5
+  eatenRangeThreshold: 3.5
+  panicSpeedMultiplier: 2
 --- !u!1 &965200552
 GameObject:
   m_ObjectHideFlags: 0
@@ -4576,10 +4607,10 @@ PrefabInstance:
       addedObject: {fileID: 948584643}
     - targetCorrespondingSourceObject: {fileID: 3220524264567058742, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 948584642}
+      addedObject: {fileID: 948584645}
     - targetCorrespondingSourceObject: {fileID: 3220524264567058742, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 948584645}
+      addedObject: {fileID: 948584646}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 5c993b53091dcac459c4a8966d2e2fe2, type: 3}
 --- !u!4 &1058713258 stripped
 Transform:
@@ -5873,7 +5904,7 @@ GameObject:
   - component: {fileID: 1301823581}
   - component: {fileID: 1301823580}
   m_Layer: 0
-  m_Name: The Deep (Light Zone)
+  m_Name: Shaded Cave (Light Zone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5906,7 +5937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d477fb9f8fc2da344860147695bf9174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightZone
-  zoneName: The Deep
+  zoneName: Shaded Cave
   targetDarkness: 1
   fadeSeconds: 2.5
 --- !u!65 &1301823581
@@ -6319,7 +6350,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1931351605}
   - {fileID: 1656773127}
   - {fileID: 974156832}
   - {fileID: 948584639}
@@ -7446,92 +7476,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!1001 &1844296355
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1409360328}
-    m_Modifications:
-    - target: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_Name
-      value: Fishes_Little_Barracuda_1_Base
-      objectReference: {fileID: 0}
-    - target: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7365918
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.7365918
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 22.49563
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -18.19906
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1931351608}
-    - targetCorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1931351607}
-    - targetCorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1931351609}
-    - targetCorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1931351610}
-  m_SourcePrefab: {fileID: -4161369568681901532, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
---- !u!1 &1844296356 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-  m_PrefabInstance: {fileID: 1844296355}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1911987472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
@@ -7619,94 +7563,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.89999974
   m_Center: {x: -0.00046154863, y: 0.6722548, z: -0.27682307}
---- !u!4 &1931351605 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
-  m_PrefabInstance: {fileID: 1844296355}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1931351607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844296356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639f273b560442d45a75bd7df13b2557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityData
-  creatureType: 1
-  grantedAbility: 0
-  sizeTier: 2
-  growthValue: 15
---- !u!54 &1931351608
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844296356}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1931351609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844296356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c44c9451cdbd8254a81f457df4624c40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PredatorFish
-  alertRadius: 12
-  pursueRadius: 8
-  disengageRadius: 18
-  patrolSpeed: 2
-  pursueSpeed: 3
-  turnSpeed: 3
-  currentState: 0
---- !u!135 &1931351610
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844296356}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.52981037
-  m_Center: {x: 0.007816291, y: -0.0018753964, z: -0.29727477}
 --- !u!1 &1944205060
 GameObject:
   m_ObjectHideFlags: 0

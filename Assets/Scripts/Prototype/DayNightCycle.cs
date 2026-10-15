@@ -29,6 +29,10 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private bool underwaterLook = true;   // solid fog-coloured background + fog
     [SerializeField] private float baseFogDensity = 0.007f;
 
+    [Header("Per-level look")]
+    [SerializeField, Range(0f, 1f)] private float levelDarkness = 0f;   // permanent extra darkness for this level (0 = bright reef, 1 = pitch dark)
+    [SerializeField] private float sunMaxIntensity = 2f;               // brightness of the sun at noon
+
     private Light sun;
     private Camera cam;
     private float t;
@@ -67,12 +71,12 @@ public class DayNightCycle : MonoBehaviour
         float sunHeight = Mathf.Sin((t - 0.25f) * Mathf.PI * 2f);           // +1 noon ... -1 midnight
         float day = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((sunHeight + 0.15f) / 0.5f));
         float dusk = Mathf.Clamp01(1f - Mathf.Abs(sunHeight) * 3.5f);
-        float dark = LightZone.Darkness;                                    // extra darkness inside The Deep
+        float dark = Mathf.Max(LightZone.Darkness, levelDarkness);                                    // extra darkness inside The Deep
 
         Color c = Color.Lerp(nightColor, dayColor, day);
         c = Color.Lerp(c, duskColor, dusk * 0.7f);
         sun.color = c;
-        sun.intensity = Mathf.Lerp(0.25f, 2f, day) * (1f - 0.65f * dark);
+        sun.intensity = Mathf.Lerp(0.25f, sunMaxIntensity, day) * (1f - 0.65f * dark);
 
         float elevation = Mathf.Lerp(18f, 80f, Mathf.Clamp01(sunHeight));
         float yaw = 330f + (t - 0.5f) * 140f;

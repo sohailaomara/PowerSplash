@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Runtime-built HUD (uGUI, legacy Text so no TMP import is needed).
@@ -17,14 +19,32 @@ public class GameHUD : MonoBehaviour
     private float messageTimer;
     private string prompt = "";
 
+    // Location name (Level 1 / 2 / 3)
+    private Text locationText, locationBanner;
+    private float locationBannerTimer;
+
+    // Lose screen
+    private GameObject losePanel;
+    private Text loseDetailText;
+    private bool loseShown;
+    private float loseShownAt;
+
+    // Win screen
+    private GameObject winPanel;
+    private Text winDetailText;
+    private bool winShown;
+    private float winShownAt;
+
     [SerializeField] private int tier2Threshold = 50;
     [SerializeField] private int tier3Threshold = 120;
 
     private void Awake()
     {
         Instance = this;
+        Time.timeScale = 1f;
         font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         BuildUI();
+        locationBannerTimer = 4.5f;
     }
 
     private void OnDestroy() { if (Instance == this) Instance = null; }
@@ -38,8 +58,167 @@ public class GameHUD : MonoBehaviour
 
     public static void SetPrompt(string text) { if (Instance != null) Instance.prompt = text ?? ""; }
 
+    /// <summary>Shows the full-screen lose overlay and pauses the game until the player retries.</summary>
+    public static void ShowLoseScreen(string detail)
+    {
+        if (Instance == null || Instance.loseShown || Instance.winShown) return;
+        Instance.loseShown = true;
+        Instance.loseShownAt = Time.realtimeSinceStartup;
+        Instance.loseDetailText.text = detail;
+        Instance.losePanel.SetActive(true);
+        Instance.messageText.text = "";
+        Time.timeScale = 0f;
+    }
+
+    private void HandleLoseInput()
+    {
+        if (Time.realtimeSinceStartup - loseShownAt < 0.75f) return; // avoid skipping it by accident
+
+        bool retry =
+            (Keyboard.current != null && (Keyboard.current.rKey.wasPressedThisFrame ||
+                                          Keyboard.current.enterKey.wasPressedThisFrame ||
+                                          Keyboard.current.spaceKey.wasPressedThisFrame)) ||
+            (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame);
+        if (!retry) return;
+
+        loseShown = false;
+        Time.timeScale = 1f;
+        PlayerInventory.Reset();
+        if (AbilitySystem.Instance != null) AbilitySystem.Instance.ResetAll();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    /// <summary>Each size tier is its own level, and each level is its own location.</summary>
+    public static string LocationName(int tier)
+    {
+        switch (tier)
+        {
+            case 1: return "Sunlit Reef";
+            case 2: return "Open Water";
+            default: return "The Deep";
+        }
+    }
+
+    private void BuildLocationLabels(Transform root)
+    {
+        // Small label that stays on screen, top centre
+        locationText = MakeText("Location", root, new Vector2(0.5f, 1f), new Vector2(0f, -24f), new Vector2(900f, 44f), 34, TextAnchor.UpperCenter);
+        locationText.color = new Color(0.75f, 0.95f, 1f);
+
+        // Large title that appears when the level starts and fades out
+        locationBanner = MakeText("Location Banner", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 230f), new Vector2(1600f, 220f), 84, TextAnchor.MiddleCenter);
+    }
+
+    private void UpdateLocationLabel()
+    {
+        if (locationText == null || locationBanner == null) return;
+
+        int tier = PlayerProgress.SceneTier();
+        string locName = LocationName(tier).ToUpper();
+        locationText.text = "LEVEL " + tier + "  -  " + locName;
+
+        if (loseShown || winShown) { locationBanner.text = ""; return; }
+        locationBannerTimer -= Time.unscaledDeltaTime;
+        if (locationBannerTimer <= 0f) { locationBanner.text = ""; return; }
+        locationBanner.text = "LEVEL " + tier + "\n" + locName;
+        locationBanner.color = new Color(1f, 1f, 1f, Mathf.Clamp01(locationBannerTimer / 1.2f));
+    }
+
+    /// <summary>Shows the full-screen win overlay (the game is finished) and pauses until the player restarts.</summary>
+    public static void ShowWinScreen(string detail)
+    {
+        if (Instance == null || Instance.winShown || Instance.loseShown) return;
+        Instance.winShown = true;
+        Instance.winShownAt = Time.realtimeSinceStartup;
+        Instance.winDetailText.text = detail;
+        Instance.winPanel.SetActive(true);
+        Instance.messageText.text = "";
+        Time.timeScale = 0f;
+    }
+
+    private void HandleWinInput()
+    {
+        if (Time.realtimeSinceStartup - winShownAt < 1f) return; // avoid skipping it by accident
+
+        bool again =
+            (Keyboard.current != null && (Keyboard.current.rKey.wasPressedThisFrame ||
+                                          Keyboard.current.enterKey.wasPressedThisFrame ||
+                                          Keyboard.current.spaceKey.wasPressedThisFrame)) ||
+            (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame);
+        if (!again) return;
+
+        // Play again from the very beginning: Level 1, fresh fish
+        winShown = false;
+        Time.timeScale = 1f;
+        PlayerProgress.Clear();
+        PlayerInventory.Reset();
+        if (AbilitySystem.Instance != null) AbilitySystem.Instance.ResetAll();
+        SceneManager.LoadScene(0);
+    }
+
+    private void BuildWinScreen(Transform root)
+    {
+        winPanel = new GameObject("Win Screen");
+        winPanel.transform.SetParent(root, false);
+        Image bg = winPanel.AddComponent<Image>();
+        bg.color = new Color(0.02f, 0.28f, 0.30f, 0.82f);
+        bg.raycastTarget = false;
+        RectTransform rt = bg.rectTransform;
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.offsetMin = Vector2.zero;
+        rt.offsetMax = Vector2.zero;
+
+        Vector2 mid = new Vector2(0.5f, 0.5f);
+        Text title = MakeText("WinTitle", winPanel.transform, mid, new Vector2(0, 110), new Vector2(1500, 140), 110, TextAnchor.MiddleCenter);
+        title.text = "YOU WIN!";
+        title.color = new Color(1f, 0.87f, 0.3f);
+
+        Text sub = MakeText("WinSubtitle", winPanel.transform, mid, new Vector2(0, 10), new Vector2(1500, 60), 42, TextAnchor.MiddleCenter);
+        sub.text = "You grew from the smallest fish to ruler of The Deep";
+
+        winDetailText = MakeText("WinDetail", winPanel.transform, mid, new Vector2(0, -60), new Vector2(1500, 50), 32, TextAnchor.MiddleCenter);
+        winDetailText.color = new Color(0.75f, 0.95f, 1f);
+
+        Text again = MakeText("WinAgain", winPanel.transform, mid, new Vector2(0, -140), new Vector2(1500, 50), 32, TextAnchor.MiddleCenter);
+        again.text = "Press R, Enter or click to play again";
+        again.color = new Color(1f, 0.95f, 0.5f);
+
+        winPanel.SetActive(false);
+    }
+
+    private void BuildLoseScreen(Transform root)
+    {
+        losePanel = new GameObject("Lose Screen");
+        losePanel.transform.SetParent(root, false);
+        Image bg = losePanel.AddComponent<Image>();
+        bg.color = new Color(0.45f, 0.02f, 0.02f, 0.78f);
+        bg.raycastTarget = false;
+        RectTransform rt = bg.rectTransform;
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.offsetMin = Vector2.zero;
+        rt.offsetMax = Vector2.zero;
+
+        Vector2 mid = new Vector2(0.5f, 0.5f);
+        Text title = MakeText("LoseTitle", losePanel.transform, mid, new Vector2(0, 90), new Vector2(1500, 130), 100, TextAnchor.MiddleCenter);
+        title.text = "YOU WERE EATEN!";
+        title.color = new Color(1f, 0.85f, 0.8f);
+
+        loseDetailText = MakeText("LoseDetail", losePanel.transform, mid, new Vector2(0, -10), new Vector2(1500, 60), 38, TextAnchor.MiddleCenter);
+
+        Text retry = MakeText("LoseRetry", losePanel.transform, mid, new Vector2(0, -100), new Vector2(1500, 50), 32, TextAnchor.MiddleCenter);
+        retry.text = "Press R, Enter or click to try again";
+        retry.color = new Color(1f, 0.95f, 0.5f);
+
+        losePanel.SetActive(false);
+    }
+
     private void Update()
     {
+        if (loseShown) HandleLoseInput();
+        if (winShown) HandleWinInput();
+        UpdateLocationLabel();
         if (playerData == null)
         {
             GameObject p = GameObject.FindGameObjectWithTag("Player");
@@ -88,7 +267,7 @@ public class GameHUD : MonoBehaviour
         // --- Camera / lighting ---
         cameraText.text = "CAMERA: " + (CameraDirector.Instance != null ? CameraDirector.Instance.CurrentLabel : "-");
         string zone = LightZone.CurrentZoneName;
-        lightText.text = "TIME " + DayNightCycle.TimeString + "   FLASHLIGHT " + (PlayerFlashlight.IsOn ? "ON" : "OFF") + "   ZONE: " + zone;
+        lightText.text = "TIME " + DayNightCycle.TimeString + "   FLASHLIGHT " + (PlayerFlashlight.IsOn ? "ON" : "OFF") + "   LIGHT: " + zone;
 
         // --- Messages / prompt ---
         if (messageTimer > 0f)
@@ -139,6 +318,10 @@ public class GameHUD : MonoBehaviour
             "V first/third-person  |  L flashlight  |  T fast-forward time\n" +
             "1-5 grant ability (debug): Inflate, Ink, Shock, Speed, Shield";
         helpText.color = new Color(1f, 1f, 1f, 0.75f);
+
+        BuildLocationLabels(root);
+        BuildLoseScreen(root);
+        BuildWinScreen(root);
     }
 
     private Text MakeText(string name, Transform parent, Vector2 anchor, Vector2 pos, Vector2 size, int fontSize, TextAnchor align)

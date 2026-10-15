@@ -244,8 +244,8 @@ Transform:
   m_GameObject: {fileID: 75362879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: 12.75, z: -27}
-  m_LocalScale: {x: 2, y: 34.5, z: 46}
+  m_LocalPosition: {x: 28, y: 12.75, z: -82}
+  m_LocalScale: {x: 2, y: 34.5, z: 156}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1309823280}
@@ -1486,7 +1486,7 @@ GameObject:
   - component: {fileID: 388529760}
   - component: {fileID: 388529759}
   m_Layer: 0
-  m_Name: The Deep (Light Zone)
+  m_Name: Dark Trench (Light Zone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d477fb9f8fc2da344860147695bf9174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightZone
-  zoneName: The Deep
+  zoneName: Dark Trench
   targetDarkness: 1
   fadeSeconds: 2.5
 --- !u!65 &388529760
@@ -1689,17 +1689,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   cycleSeconds: 120
-  startTime: 0.35
+  startTime: 0.4
   fastForward: 12
   dayColor: {r: 1, g: 0.97, b: 0.85, a: 1}
   duskColor: {r: 1, g: 0.5, b: 0.25, a: 1}
   nightColor: {r: 0.25, g: 0.35, b: 0.85, a: 1}
-  dayAmbient: {r: 0.25, g: 0.45, b: 0.55, a: 1}
+  dayAmbient: {r: 0.18, g: 0.35, b: 0.55, a: 1}
   nightAmbient: {r: 0.02, g: 0.04, b: 0.1, a: 1}
-  dayFog: {r: 0.1, g: 0.45, b: 0.6, a: 1}
+  dayFog: {r: 0.03, g: 0.25, b: 0.55, a: 1}
   nightFog: {r: 0.01, g: 0.03, b: 0.08, a: 1}
   underwaterLook: 1
-  baseFogDensity: 0.007
+  baseFogDensity: 0.009
+  levelDarkness: 0.15
+  sunMaxIntensity: 1.8
 --- !u!1 &416356174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,7 +3051,7 @@ Transform:
   m_GameObject: {fileID: 938624907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.49563, y: -4.5, z: 8.19906}
+  m_LocalPosition: {x: -48.49563, y: -4.5, z: -21.80094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3454,7 +3456,7 @@ Transform:
   m_GameObject: {fileID: 1048492270}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: -3.5, z: 6}
+  m_LocalPosition: {x: -20, y: -3.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4574,7 +4576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309823279}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5181,7 +5183,7 @@ Transform:
   m_GameObject: {fileID: 1442546924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 6, z: 16}
+  m_LocalPosition: {x: -18, y: 4, z: 22}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5848,7 +5850,7 @@ Transform:
   m_GameObject: {fileID: 1648086463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 2, z: -10}
+  m_LocalPosition: {x: 20, y: 7, z: 18}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6260,8 +6262,8 @@ Transform:
   m_GameObject: {fileID: 1749842599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: 12.75, z: 27}
-  m_LocalScale: {x: 2, y: 34.5, z: 46}
+  m_LocalPosition: {x: 28, y: 12.75, z: 82}
+  m_LocalScale: {x: 2, y: 34.5, z: 156}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1309823280}
@@ -7933,7 +7935,7 @@ Transform:
   m_GameObject: {fileID: 2134232204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 0, z: 0}
+  m_LocalPosition: {x: -34, y: 2, z: -18}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children:

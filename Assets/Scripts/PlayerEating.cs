@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(EntityData))]
 public class PlayerEating : MonoBehaviour
@@ -18,6 +20,7 @@ public class PlayerEating : MonoBehaviour
     private Vector3 startScale;
     private Quaternion startRotation;
     private bool dead;
+    private bool leaving;
 
     private void Start()
     {
@@ -26,6 +29,7 @@ public class PlayerEating : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
         startScale = transform.localScale;
+        ApplyProgress();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,7 +64,7 @@ public class PlayerEating : MonoBehaviour
         if (isPredator && otherData.sizeTier > playerData.sizeTier)
         {
             if (AbilitySystem.ShieldActive) Zap(otherData);
-            else Die();
+            else Die(otherData);
         }
     }
 
@@ -89,7 +93,7 @@ public class PlayerEating : MonoBehaviour
         if (wanted > current)
         {
             playerData.sizeTier += wanted - current;
-            GameHUD.Message("You reached Size Tier " + wanted + "!", 3.5f);
+            AnnounceTier(wanted);
         }
         else if (extra == "")
         {
@@ -97,7 +101,71 @@ public class PlayerEating : MonoBehaviour
         }
 
         Fx.Burst(target.transform.position, new Color(0.75f, 0.92f, 1f, 0.9f), 14, 0.3f, 3f, 0.8f);
+        // Eaten fish vanish immediately (Destroy only takes effect at the end of the frame)
+        foreach (Renderer r in target.GetComponentsInChildren<Renderer>()) r.enabled = false;
+        foreach (Collider c in target.GetComponentsInChildren<Collider>()) c.enabled = false;
+        bool finalReward = target.GetComponent<FinalReward>() != null;
         Destroy(target);
+
+        // Eating the final reward (the Golden Clam in Level 3) wins the game
+        if (finalReward)
+            GameHUD.ShowWinScreen("Final size: Tier " + playerData.sizeTier + "   |   Growth: " + Mathf.FloorToInt(playerData.growthValue));
+    }
+
+    // Each size tier lives in its own scene (tier 1 = Level 1, tier 2 = Level 2, tier 3 = Level 3).
+    // Growth, tier and the stored ability are carried from scene to scene by PlayerProgress.
+    private void ApplyProgress()
+    {
+        int sceneTier = PlayerProgress.SceneTier();
+        float growth;
+        int tier;
+        AbilityType stored = AbilityType.None;
+
+        if (PlayerProgress.HasData && PlayerProgress.Tier >= sceneTier)
+        {
+            growth = PlayerProgress.Growth;
+            tier = PlayerProgress.Tier;
+            stored = PlayerProgress.Stored;
+        }
+        else
+        {
+            // Scene opened directly (for example from the editor): start at the minimum for this tier
+            tier = sceneTier;
+            growth = sceneTier >= 3 ? tier3Threshold : (sceneTier == 2 ? tier2Threshold : 0f);
+        }
+
+        playerData.growthValue = growth;
+        playerData.sizeTier = tier;
+        transform.localScale += Vector3.one * (growth * sizeGrowthScaleMultiplier);
+        if (stored != AbilityType.None && AbilitySystem.Instance != null) AbilitySystem.Instance.Restore(stored);
+    }
+
+    private void AnnounceTier(int tier)
+    {
+        int nextIndex = PlayerProgress.SceneIndexForTier(tier);
+        bool sceneExists = nextIndex < SceneManager.sceneCountInBuildSettings && nextIndex != SceneManager.GetActiveScene().buildIndex;
+
+        if (tier > PlayerProgress.SceneTier() && sceneExists && !leaving)
+        {
+            leaving = true;
+            GameHUD.Message("Size Tier " + tier + " reached! Swimming on to Level " + tier + "...", 3f);
+            StartCoroutine(LoadLevelAfter(nextIndex, tier, 2.5f));
+        }
+        else
+        {
+            GameHUD.Message("You reached Size Tier " + tier + "!", 3.5f);
+        }
+    }
+
+    private IEnumerator LoadLevelAfter(int sceneIndex, int tier, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (dead) { leaving = false; yield break; }
+
+        AbilitySystem abilities = AbilitySystem.Instance;
+        PlayerProgress.Save(playerData.growthValue, tier, abilities != null ? abilities.Stored : AbilityType.None);
+        PlayerInventory.Reset();
+        SceneManager.LoadScene(sceneIndex);
     }
 
     private void Zap(EntityData predator)
@@ -111,23 +179,20 @@ public class PlayerEating : MonoBehaviour
         GameHUD.Message("Electric Defense zapped the " + predator.name + "!", 2.5f);
     }
 
-    private void Die()
+    private void Die(EntityData killer)
     {
         dead = true;
-        GameHUD.Message("A predator got you! Respawning...", respawnDelay);
         Fx.Burst(transform.position, new Color(1f, 0.4f, 0.3f, 0.9f), 30, 0.4f, 6f, 1f);
-        Invoke(nameof(Respawn), respawnDelay);
+
+        // The main fish was eaten: it vanishes and stops responding to input.
+        foreach (Renderer r in GetComponentsInChildren<Renderer>()) r.enabled = false;
+        FishMovement move = GetComponent<FishMovement>();
+        if (move != null) move.enabled = false;
+        if (rb != null) { rb.linearVelocity = Vector3.zero; rb.angularVelocity = Vector3.zero; }
+
+        string by = killer != null ? killer.name : "a predator";
+        GameHUD.ShowLoseScreen("You were eaten by " + by + "!");
     }
 
-    private void Respawn()
-    {
-        if (AbilitySystem.Instance != null) AbilitySystem.Instance.ResetAll();
-        if (rb != null) { rb.linearVelocity = Vector3.zero; rb.angularVelocity = Vector3.zero; }
-        transform.SetPositionAndRotation(startPosition, startRotation);
-        transform.localScale = startScale;
-        playerData.growthValue = 0f;
-        playerData.sizeTier = 1;
-        dead = false;
-        GameHUD.Message("Back to the shallow reef - try again!", 2.5f);
-    }
+    // Retrying is handled by the lose screen in GameHUD (reloads the level).
 }
