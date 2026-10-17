@@ -25,7 +25,7 @@ public class GameHUD : MonoBehaviour
 
     // Lose screen
     private GameObject losePanel;
-    private Text loseDetailText;
+    private Text loseDetailText, loseRetryText;
     private bool loseShown;
     private float loseShownAt;
 
@@ -65,6 +65,7 @@ public class GameHUD : MonoBehaviour
         Instance.loseShown = true;
         Instance.loseShownAt = Time.realtimeSinceStartup;
         Instance.loseDetailText.text = detail;
+        Instance.loseRetryText.text = "Press R, Enter or click to start again from LEVEL 1";
         Instance.losePanel.SetActive(true);
         Instance.messageText.text = "";
         Time.timeScale = 0f;
@@ -85,7 +86,8 @@ public class GameHUD : MonoBehaviour
         Time.timeScale = 1f;
         PlayerInventory.Reset();
         if (AbilitySystem.Instance != null) AbilitySystem.Instance.ResetAll();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PlayerProgress.Clear();   // dying always restarts the whole game: Level 1, tier 1, default size
+        SceneManager.LoadScene(0);
     }
 
     /// <summary>Each size tier is its own level, and each level is its own location.</summary>
@@ -209,6 +211,7 @@ public class GameHUD : MonoBehaviour
 
         Text retry = MakeText("LoseRetry", losePanel.transform, mid, new Vector2(0, -100), new Vector2(1500, 50), 32, TextAnchor.MiddleCenter);
         retry.text = "Press R, Enter or click to try again";
+        loseRetryText = retry;
         retry.color = new Color(1f, 0.95f, 0.5f);
 
         losePanel.SetActive(false);

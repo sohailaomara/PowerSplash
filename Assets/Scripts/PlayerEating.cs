@@ -32,7 +32,16 @@ public class PlayerEating : MonoBehaviour
         ApplyProgress();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) { Evaluate(other, false); }
+
+    // Contact is re-checked while a creature stays inside the eat trigger. Without this, a creature that was
+    // already overlapping when the situation changed (Inflate ended, the fish grew a tier, a stun ran out)
+    // was never eaten and never ate the player: it just circled the fish.
+    private void OnTriggerStay(Collider other) { Evaluate(other, true); }
+
+    private readonly Dictionary<GameObject, float> zappedAt = new Dictionary<GameObject, float>();
+
+    private void Evaluate(Collider other, bool staying)
     {
         if (dead || playerData == null) return;
 
@@ -41,6 +50,10 @@ public class PlayerEating : MonoBehaviour
 
         GameObject target = otherData.gameObject;
         if (eaten.Contains(target)) return;
+
+        // A predator that Electric Defense just zapped must be pushed away, not eaten while it is still stunned
+        float zapped;
+        if (staying && zappedAt.TryGetValue(target, out zapped) && Time.time - zapped < 4.5f) return;
 
         // The player has more than one collider, so the same creature can report twice in a frame.
         float last;
@@ -172,6 +185,7 @@ public class PlayerEating : MonoBehaviour
     {
         GameObject target = predator.gameObject;
         Stun.Apply(target, 4f);
+        zappedAt[target] = Time.time;
         Rigidbody prb = target.GetComponent<Rigidbody>();
         if (prb != null)
             prb.AddForce((target.transform.position - transform.position).normalized * 20f, ForceMode.VelocityChange);
@@ -190,7 +204,12 @@ public class PlayerEating : MonoBehaviour
         if (move != null) move.enabled = false;
         if (rb != null) { rb.linearVelocity = Vector3.zero; rb.angularVelocity = Vector3.zero; }
 
-        string by = killer != null ? killer.name : "a predator";
+        string by = "a predator";
+        if (killer != null)
+        {
+            string n = killer.name.Replace("Fishes_Big_", "").Replace("Fishes_Little_", "").Replace("_1_Base", "").Replace("_1", "").Replace("_", " ").Trim();
+            by = "the " + n + " (size tier " + killer.sizeTier + ", you are tier " + (playerData != null ? playerData.sizeTier : 0) + ")";
+        }
         GameHUD.ShowLoseScreen("You were eaten by " + by + "!");
     }
 

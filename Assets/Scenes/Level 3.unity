@@ -2619,6 +2619,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2113348939}
+    - targetCorrespondingSourceObject: {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113348943}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
 --- !u!1 &689542181
 GameObject:
@@ -5400,6 +5403,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1911987473}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1911987476}
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a398f62cf94447b986473c9933ca6, type: 3}
 --- !u!1 &1384740055
 GameObject:
@@ -6178,15 +6184,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2698702154677693195, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 2698702154677693195, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 2698702154677693195, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 2698702154677693195, guid: f96786433a8727c42acc9c32a08d4a40, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8719,6 +8725,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1911987476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746861866}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7701899, y: 1.9119809, z: 1.8398318}
+  m_Center: {x: -0.84077173, y: -0.020625055, z: -0.3746624}
 --- !u!4 &1931351605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8301751860193654873, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
@@ -8977,6 +9004,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1409360328}
     m_Modifications:
+    - target: {fileID: 1620876555914398445, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620876555914398445, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620876555914398445, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1620876555914398445, guid: b26fd168a8c62744c90d4d8064d8a223, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.49563
@@ -9499,7 +9538,7 @@ PrefabInstance:
       addedObject: {fileID: 2011450129}
     - targetCorrespondingSourceObject: {fileID: -6440681814241626239, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2011450128}
+      addedObject: {fileID: 2011450130}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
 --- !u!1 &2011450120 stripped
 GameObject:
@@ -9576,22 +9615,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -22157419032081861, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
---- !u!114 &2011450128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011450120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c91080dca653f4b42bc0a715caaa0d8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerEating
-  sizeGrowthScaleMultiplier: 0.05
-  tier2Threshold: 50
-  tier3Threshold: 120
-  respawnDelay: 1.5
 --- !u!114 &2011450129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9608,6 +9631,24 @@ MonoBehaviour:
   grantedAbility: 0
   sizeTier: 1
   growthValue: 10
+--- !u!114 &2011450130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011450120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c691519f8ad7234eb7a425b7b508ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PreyFish
+  swimSpeed: 3
+  turnSpeed: 2
+  wanderRadius: 25
+  directionChangeInterval: 5
+  eatenRangeThreshold: 3.5
+  panicSpeedMultiplier: 2
 --- !u!1 &2020152916
 GameObject:
   m_ObjectHideFlags: 0
@@ -10217,6 +10258,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2113348943
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113348936}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2881773, y: 0.5150285, z: 0.60765815}
+  m_Center: {x: 0.0047482997, y: 0.0045300424, z: -0.085088074}
 --- !u!1001 &1070470754441483433
 PrefabInstance:
   m_ObjectHideFlags: 0
