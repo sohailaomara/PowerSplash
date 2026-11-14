@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df7b9a54aca0e74da6917cdaef05723, type: 3}
+  m_Name: StoryTable
+  m_EditorClassIdentifier: Assembly-CSharp::StoryTable
+  objectives:
+  - completedWhenFlag: metMentor
+    text: Find Marlo, the old dolphin, and ask him about the way home.
+  - completedWhenFlag: foundBottle1
+    text: Find the glowing message bottle beside the old wreck on the seabed.
+  - completedWhenFlag: act1Complete
+    text: Eat smaller fish to reach Size Tier 2, and collect the 3 Ancient Pearls
+      to wake the ruin.
+  - completedWhenFlag: metAnglerfish
+    text: Find Lumi, the lantern-fish who lights the Open Water.
+  - completedWhenFlag: choiceMade
+    text: 'Decide your path: Lumi''s shortcut, or help Pip.'
+  - completedWhenFlag: act2Complete
+    text: Grow to Size Tier 3 to enter the Deep.
+  - completedWhenFlag: pearls3Collected
+    text: Collect the 3 Ancient Pearls to open the final ruin.
+  - completedWhenFlag: gameComplete
+    text: Enter the ruins and take the Golden Clam's light.
+  items:
+  - requiredFlag: 
+    itemName: Ancient Pearls
+    description: Pieces of the sea king's lantern. Bring three to a ruin of the Lantern
+      Road and it wakes.
+    showPearlCount: 1
+  - requiredFlag: tookShortcut
+    itemName: Lumi's Current Charm
+    description: A loan from the lantern-fish. It lets you ride the Fast Current
+      (Speed Boost). Nothing from Lumi is ever truly free.
+    showPearlCount: 0
+  - requiredFlag: savedPip
+    itemName: Spark of Lumi's Glow
+    description: A scrap of lantern light that bites back. It zaps any predator that
+      touches you (Electric Defense).
+    showPearlCount: 0
+  - requiredFlag: goldenLightTaken
+    itemName: The Golden Light
+    description: The first light of the Lantern Road, now glowing inside you.
+    showPearlCount: 0
+  gates:
+  - fromTier: 1
+    requiredFlags:
+    - metMentor
+    - foundBottle1
+    holdMessage: You are strong enough to leave the reef, but your story here is
+      not finished. Check your objective.
+    completeFlag: act1Complete
+    recapAsset: recap_1_2
+    recapAltFlag: 
+    recapAltAsset: 
+  - fromTier: 2
+    requiredFlags:
+    - choiceMade
+    holdMessage: You could swim on, but a choice still waits for you in the Open
+      Water. Find Lumi and Pip.
+    completeFlag: act2Complete
+    recapAsset: recap_2_3_pip
+    recapAltFlag: tookShortcut
+    recapAltAsset: recap_2_3_shortcut
+  seeds:
+  - tier: 2
+    flags:
+    - introSeen
+    - metMentor
+    - foundWreck
+    - foundBottle1
+    - pearls1Collected
+    - act1Complete
+    journalAssets:
+    - l1_bottle1
+  - tier: 3
+    flags:
+    - enteredOpenWater
+    - metAnglerfish
+    - foundGraveyard
+    - choiceMade
+    - savedPip
+    - pearls2Collected
+    - act2Complete
+    journalAssets:
+    - l2_bottle2

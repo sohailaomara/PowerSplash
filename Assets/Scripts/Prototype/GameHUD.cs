@@ -87,7 +87,7 @@ public class GameHUD : MonoBehaviour
         PlayerInventory.Reset();
         if (AbilitySystem.Instance != null) AbilitySystem.Instance.ResetAll();
         PlayerProgress.Clear();   // dying always restarts the whole game: Level 1, tier 1, default size
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(PlayerProgress.SceneIndexForTier(1));
     }
 
     /// <summary>Each size tier is its own level, and each level is its own location.</summary>
@@ -155,7 +155,7 @@ public class GameHUD : MonoBehaviour
         PlayerProgress.Clear();
         PlayerInventory.Reset();
         if (AbilitySystem.Instance != null) AbilitySystem.Instance.ResetAll();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(PlayerProgress.SceneIndexForTier(1));
     }
 
     private void BuildWinScreen(Transform root)

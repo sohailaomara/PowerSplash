@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: l1_marlo_first
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 0
+  lines:
+  - speaker: Marlo
+    portrait: {fileID: 5496424915399974395, guid: 07b2589218cdd3147bc544ac1e97088a, type: 3}
+    text: Easy there, little one! You are a long way from any reef I know. I am Marlo.
+      I have watched over these waters since before your grandparents hatched.
+  - speaker: You
+    portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
+    text: The storm took me. I do not know how to get home.
+  - speaker: Marlo
+    portrait: {fileID: 5496424915399974395, guid: 07b2589218cdd3147bc544ac1e97088a, type: 3}
+    text: 'A storm-lost tang. It happens more than you would think. But there is
+      a way: the Lantern Road.'
+  - speaker: Marlo
+    portrait: {fileID: 5496424915399974395, guid: 07b2589218cdd3147bc544ac1e97088a, type: 3}
+    text: Long ago, the sea king lit a chain of ruins from this reef down to the
+      deepest trench. Bring three Ancient Pearls to a ruin, and it wakes.
+  - speaker: Marlo
+    portrait: {fileID: 5496424915399974395, guid: 07b2589218cdd3147bc544ac1e97088a, type: 3}
+    text: At the end of the road, in the Deep, sleeps the Golden Clam. Its light
+      shines on every lost fish's home. Reach it, and you will see yours.
+  - speaker: Marlo
+    portrait: {fileID: 5496424915399974395, guid: 07b2589218cdd3147bc544ac1e97088a, type: 3}
+    text: But you are small, and this sea is not kind to small fish. Eat what is
+      smaller than you, grow strong, and stay away from the big ones.
+  - speaker: Marlo
+    portrait: {fileID: 5496424915399974395, guid: 07b2589218cdd3147bc544ac1e97088a, type: 3}
+    text: Oh, and a bottle washed up beside the old wreck on the seabed. Bottles
+      always carry stories. Go and have a look.
+  choices: []
+  flagToSetWhenFinished: metMentor
+  abilityWhenFinished: 0
+  journalTitle: 

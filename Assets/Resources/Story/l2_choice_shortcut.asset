@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: l2_choice_shortcut
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 0
+  lines:
+  - speaker: Lumi
+    portrait: {fileID: 1097298525319628428, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
+    text: Clever fish! Here, take this to ride the Fast Current. Think of it as a
+      loan.
+  - speaker: You
+    portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
+    text: What about Pip?
+  - speaker: Lumi
+    portrait: {fileID: 1097298525319628428, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
+    text: He will be fine. Probably. Off you go!
+  - speaker: 
+    portrait: {fileID: 0}
+    text: Behind the rock, a small orange fish watches you swim away.
+  choices: []
+  flagToSetWhenFinished: choiceMade
+  abilityWhenFinished: 4
+  journalTitle: 

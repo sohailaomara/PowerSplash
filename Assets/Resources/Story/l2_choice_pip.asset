@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: l2_choice_pip
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 0
+  lines:
+  - speaker: You
+    portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
+    text: Pip? A bottle said your mother is still searching for you.
+  - speaker: Pip
+    portrait: {fileID: 5321500989998449891, guid: f3c5a07a818135f469b115ad655a7cd8, type: 3}
+    text: She is? I have been so scared! Can I come with you? I am small, but I am
+      very brave. Mostly.
+  - speaker: Lumi
+    portrait: {fileID: 1097298525319628428, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
+    text: Hmph. Fine. Take this scrap of my glow, then. It bites back. Do not say
+      I never gave you anything.
+  - speaker: Pip
+    portrait: {fileID: 5321500989998449891, guid: f3c5a07a818135f469b115ad655a7cd8, type: 3}
+    text: I will stay right behind you!
+  choices: []
+  flagToSetWhenFinished: choiceMade
+  abilityWhenFinished: 5
+  journalTitle: 

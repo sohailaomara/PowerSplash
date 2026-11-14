@@ -122,7 +122,7 @@ public class PlayerEating : MonoBehaviour
 
         // Eating the final reward (the Golden Clam in Level 3) wins the game
         if (finalReward)
-            GameHUD.ShowWinScreen("Final size: Tier " + playerData.sizeTier + "   |   Growth: " + Mathf.FloorToInt(playerData.growthValue));
+            CinematicManager.PlayEnding("Final size: Tier " + playerData.sizeTier + "   |   Growth: " + Mathf.FloorToInt(playerData.growthValue));
     }
 
     // Each size tier lives in its own scene (tier 1 = Level 1, tier 2 = Level 2, tier 3 = Level 3).
@@ -158,7 +158,12 @@ public class PlayerEating : MonoBehaviour
         int nextIndex = PlayerProgress.SceneIndexForTier(tier);
         bool sceneExists = nextIndex < SceneManager.sceneCountInBuildSettings && nextIndex != SceneManager.GetActiveScene().buildIndex;
 
-        if (tier > PlayerProgress.SceneTier() && sceneExists && !leaving)
+        if (tier > PlayerProgress.SceneTier() && sceneExists && LevelTransition.Instance != null)
+        {
+            // Story-gated level change: LevelTransition opens the next level once the story flags allow it
+            LevelTransition.Instance.RequestTier(tier);
+        }
+        else if (tier > PlayerProgress.SceneTier() && sceneExists && !leaving)
         {
             leaving = true;
             GameHUD.Message("Size Tier " + tier + " reached! Swimming on to Level " + tier + "...", 3f);

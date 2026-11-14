@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: l2_arrival
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 0
+  lines:
+  - speaker: You
+    portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
+    text: The reef feels so far away now. The Open Water is wide and bright, and
+      every shadow could hide teeth.
+  - speaker: Marlo (echo)
+    portrait: {fileID: 5496424915399974395, guid: 07b2589218cdd3147bc544ac1e97088a, type: 3}
+    text: Courage, little tang. Somewhere in this blue swims a fish with a light
+      on his head. He knows these currents better than I do.
+  - speaker: Marlo (echo)
+    portrait: {fileID: 5496424915399974395, guid: 07b2589218cdd3147bc544ac1e97088a, type: 3}
+    text: Just do not trust him with anything you cannot afford to lose.
+  choices: []
+  flagToSetWhenFinished: enteredOpenWater
+  abilityWhenFinished: 0
+  journalTitle: 

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: l2_bottle2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 0
+  lines:
+  - speaker: Message in a Bottle
+    portrait: {fileID: 7852321668722200817, guid: 83040dd603cf240459b6ea4398cca1b2, type: 3}
+    text: Day 31. Lumi lit the way for my whole school, then led us into the dark.
+      The predators were already waiting. His light is not kindness. It is bait.
+  - speaker: Message in a Bottle
+    portrait: {fileID: 7852321668722200817, guid: 83040dd603cf240459b6ea4398cca1b2, type: 3}
+    text: He does not want to help anyone get home. He wants the Golden Clam's light
+      for himself.
+  - speaker: Message in a Bottle
+    portrait: {fileID: 7852321668722200817, guid: 83040dd603cf240459b6ea4398cca1b2, type: 3}
+    text: If you read this, do not follow the Fast Current. And do not leave anyone
+      behind.
+  choices: []
+  flagToSetWhenFinished: 
+  abilityWhenFinished: 0
+  journalTitle: 'Bottle 2: A Survivor''s Warning'

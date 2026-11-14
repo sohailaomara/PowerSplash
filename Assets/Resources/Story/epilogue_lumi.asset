@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: epilogue_lumi
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 1
+  lines:
+  - speaker: 
+    portrait: {fileID: 0}
+    text: The golden light carried the tang toward home, and the lantern-fish followed
+      in its glow.
+  - speaker: 
+    portrait: {fileID: 0}
+    text: Some shortcuts are not shortcuts at all.
+  - speaker: 
+    portrait: {fileID: 0}
+    text: TO BE CONTINUED...
+  choices: []
+  flagToSetWhenFinished: 
+  abilityWhenFinished: 0
+  journalTitle: 

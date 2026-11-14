@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: l2_lumi_first
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 0
+  lines:
+  - speaker: Lumi
+    portrait: {fileID: 1097298525319628428, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
+    text: 'Well, well, a fresh little tang! Lumi, at your service: lantern-fish,
+      guide, and the only fish in the Open Water who can see in the dark.'
+  - speaker: You
+    portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
+    text: Marlo told me about the Lantern Road. I need to reach the Deep.
+  - speaker: Lumi
+    portrait: {fileID: 1097298525319628428, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
+    text: The Deep? Ha! You would be eaten twice before lunch. But lucky you, I know
+      a shortcut. The Fast Current, straight down to the ruins. No pearls, no predators.
+  - speaker: Lumi
+    portrait: {fileID: 1097298525319628428, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
+    text: One small thing. That little clownfish hiding behind the rock? Pip, I think.
+      Forget him. He would only slow us down.
+  choices:
+  - text: Take Lumi's shortcut.
+    next: {fileID: 11400000, guid: a502b793ed5b10f4cab087902474cbd1, type: 2}
+    flagToSet: tookShortcut
+  - text: No. I will help Pip first.
+    next: {fileID: 11400000, guid: 6d4305e4a41901b4fbb67ebe923f226e, type: 2}
+    flagToSet: savedPip
+  flagToSetWhenFinished: metAnglerfish
+  abilityWhenFinished: 0
+  journalTitle: 

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: l2_lumi_after_shortcut
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 0
+  lines:
+  - speaker: Lumi
+    portrait: {fileID: 1097298525319628428, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
+    text: The Fast Current is that way, tang. Do not dawdle. The tide turns, and
+      so does my generosity.
+  choices: []
+  flagToSetWhenFinished: 
+  abilityWhenFinished: 0
+  journalTitle: 

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: intro_crawl
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 1
+  lines:
+  - speaker: 
+    portrait: {fileID: 0}
+    text: The storm came without warning.
+  - speaker: 
+    portrait: {fileID: 0}
+    text: One moment, a little yellow tang was grazing beside its family on the reef.
+      The next, the sea turned to thunder and the current tore it away.
+  - speaker: 
+    portrait: {fileID: 0}
+    text: When the water finally calmed, home was gone. Only strange coral, strange
+      fish and an enormous, hungry ocean remained.
+  - speaker: 
+    portrait: {fileID: 0}
+    text: But the old currents whisper of a Golden Light, deep in the sea, that shines
+      on every lost fish's home.
+  - speaker: 
+    portrait: {fileID: 0}
+    text: To reach it, the tang must grow strong, swim far, and choose what kind
+      of fish it wants to be.
+  choices: []
+  flagToSetWhenFinished: introSeen
+  abilityWhenFinished: 0
+  journalTitle: 

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a645d648fe4a4c86c14f18251ec06, type: 3}
+  m_Name: l3_bottle3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  presentation: 0
+  lines:
+  - speaker: Message in a Bottle
+    portrait: {fileID: 7852321668722200817, guid: 83040dd603cf240459b6ea4398cca1b2, type: 3}
+    text: I lit the Lantern Road so that no creature of my sea would ever stay lost.
+  - speaker: Message in a Bottle
+    portrait: {fileID: 7852321668722200817, guid: 83040dd603cf240459b6ea4398cca1b2, type: 3}
+    text: The Golden Clam holds the first light. Only a gentle heart can swallow
+      it without being consumed by it.
+  - speaker: Message in a Bottle
+    portrait: {fileID: 7852321668722200817, guid: 83040dd603cf240459b6ea4398cca1b2, type: 3}
+    text: If you read this, take the light kindly, and remember who swam beside you.
+  choices: []
+  flagToSetWhenFinished: 
+  abilityWhenFinished: 0
+  journalTitle: 'Bottle 3: The Sea King''s Last Words'
