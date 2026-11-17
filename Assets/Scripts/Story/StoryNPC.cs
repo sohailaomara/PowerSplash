@@ -102,7 +102,8 @@ public class StoryNPC : Interactable
         if (started)
         {
             if (bob) transform.position = basePos + Vector3.up * Mathf.Sin(Time.time * 1.2f + phase) * 0.35f;
-            if (sway) transform.rotation = baseRot * Quaternion.Euler(0f, Mathf.Sin(Time.time * 0.6f + phase) * 12f, 0f);
+            // slow sway plus a quick tail-beat wag so the character looks like it is swimming in place
+            if (sway) transform.rotation = baseRot * Quaternion.Euler(0f, Mathf.Sin(Time.time * 0.6f + phase) * 10f + Mathf.Sin(Time.time * 10.5f + phase) * 5f, 0f);
         }
         if (label != null && Camera.main != null) label.rotation = Camera.main.transform.rotation;
     }

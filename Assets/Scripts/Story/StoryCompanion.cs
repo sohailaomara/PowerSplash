@@ -15,10 +15,11 @@ public class StoryCompanion : MonoBehaviour
     private Vector3 idleBase;
     private Vector3 velocity;
     private bool baseSet;
+    private Quaternion baseRot;
 
     private void Update()
     {
-        if (!baseSet) { idleBase = transform.position; baseSet = true; }
+        if (!baseSet) { idleBase = transform.position; baseRot = transform.rotation; baseSet = true; }
 
         if (player == null)
         {
@@ -47,6 +48,8 @@ public class StoryCompanion : MonoBehaviour
 
         // Face the way the companion is swimming
         if (velocity.sqrMagnitude > 0.5f)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * 4f);
+            baseRot = Quaternion.Slerp(baseRot, Quaternion.LookRotation(velocity), Time.deltaTime * 4f);
+        float moving = Mathf.Clamp01(velocity.magnitude / 8f);
+        transform.rotation = Quaternion.AngleAxis(Mathf.Sin(Time.time * 12f) * (3f + 8f * moving), Vector3.up) * baseRot;
     }
 }

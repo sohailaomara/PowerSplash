@@ -16,8 +16,8 @@ MonoBehaviour:
   lines:
   - speaker: You
     portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
-    text: An old fishing boat, half buried in the sand. The nets are torn and the
-      lanterns are dark.
+    text: A sunken ship, half buried in the sand. Its sails are torn to rags and
+      its lanterns are dark.
   - speaker: You
     portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
     text: Whoever sailed here never made it home either.

@@ -2,6 +2,10 @@ using UnityEngine;
 
 public enum PredatorState { Patrol, Alert, Pursue, Disengage }
 
+/// <summary>
+/// Predator AI: patrols, becomes alert when a smaller player comes close, then pursues it.
+/// The AI only chooses a direction and speed; FishSwimAnimator turns that into believable swimming.
+/// </summary>
 [RequireComponent(typeof(Rigidbody), typeof(EntityData))]
 public class PredatorFish : MonoBehaviour
 {
@@ -18,13 +22,17 @@ public class PredatorFish : MonoBehaviour
     [Header("Current State")]
     public PredatorState currentState = PredatorState.Patrol;
 
+    private const float VerticalBand = 8f;
+
     private Rigidbody rb;
+    private FishSwimAnimator swim;
     private Transform playerTransform;
     private EntityData myData;
     private EntityData playerData;
     private Vector3 spawnPoint;
     private Vector3 patrolDirection;
     private float timer;
+    private float nextChange = 6f;
 
     private void Start()
     {
@@ -33,9 +41,10 @@ public class PredatorFish : MonoBehaviour
         rb.linearDamping = 1.5f;
         rb.angularDamping = 2.0f;
 
+        swim = FishSwimAnimator.Ensure(gameObject);
         myData = GetComponent<EntityData>();
         spawnPoint = transform.position;
-        patrolDirection = Random.onUnitSphere;
+        patrolDirection = swim.Heading;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -82,8 +91,10 @@ public class PredatorFish : MonoBehaviour
         }
 
         // 2. Execute State Behavior
-        Vector3 targetDir = transform.forward;
+        Vector3 targetDir = swim.Heading;
         float moveSpeed = patrolSpeed;
+        float turnRate = turnSpeed * 22f;      // degrees per second; big hunters turn slowly
+        float pitchLimit = -1f;
 
         switch (currentState)
         {
@@ -91,11 +102,15 @@ public class PredatorFish : MonoBehaviour
                 timer += Time.fixedDeltaTime;
                 if (Vector3.Distance(transform.position, spawnPoint) > 30f)
                     patrolDirection = (spawnPoint - transform.position).normalized;
-                else if (timer >= 6f)
+                else if (timer >= nextChange)
                 {
-                    patrolDirection = Random.onUnitSphere;
+                    patrolDirection = FishSwimAnimator.RandomSwimDirection();
                     timer = 0f;
+                    nextChange = 6f * Random.Range(0.7f, 1.5f);
                 }
+                float dy = transform.position.y - spawnPoint.y;
+                if (dy > VerticalBand) patrolDirection.y = Mathf.Min(patrolDirection.y, -0.3f);
+                else if (dy < -VerticalBand) patrolDirection.y = Mathf.Max(patrolDirection.y, 0.3f);
                 targetDir = patrolDirection;
                 moveSpeed = patrolSpeed;
                 break;
@@ -107,9 +122,11 @@ public class PredatorFish : MonoBehaviour
                 break;
 
             case PredatorState.Pursue:
-                // Fast direct chase
+                // Fast direct chase: sharper turns, steeper dives allowed
                 targetDir = (playerTransform.position - transform.position).normalized;
                 moveSpeed = pursueSpeed;
+                turnRate = turnSpeed * 40f;
+                pitchLimit = 50f;
                 break;
 
             case PredatorState.Disengage:
@@ -120,12 +137,7 @@ public class PredatorFish : MonoBehaviour
         }
 
         // 3. Movement Application
-        if (targetDir != Vector3.zero)
-        {
-            Quaternion targetRot = Quaternion.LookRotation(targetDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.fixedDeltaTime * turnSpeed);
-        }
-
-        rb.AddForce((transform.forward * moveSpeed) - rb.linearVelocity, ForceMode.Acceleration);
+        if (currentState != PredatorState.Pursue) targetDir = swim.AvoidObstacles(targetDir);
+        swim.Steer(targetDir, moveSpeed, turnRate, Time.fixedDeltaTime, pitchLimit);
     }
 }

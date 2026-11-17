@@ -33,9 +33,9 @@ public static class StoryWorldBuilder
         MakeNpc(w, "Marlo", FishDir + "delfino_done.fbx", 16f, new Vector3(-18f, 8f, 18f), new Color(0.5f, 0.9f, 1f),
             C("", "metMentor", "l1_marlo_first"), C("foundBottle1", "", "l1_marlo_hint2"), C("metMentor", "", "l1_marlo_hint1"));
 
-        Wreck(w, new Vector3(30f, -3.2f, 24f));
-        Bottle(w, new Vector3(24f, 1.5f, 18f), "l1_bottle1", "foundBottle1");
-        Zone(w, "Zone - Old Wreck", new Vector3(30f, 3f, 24f), new Vector3(34f, 22f, 34f), "l1_wreck_zone", "", "");
+        Vector3 bottlePos = ShipWreck(w, new Vector3(-40f, -3.2f, 32f));
+        Bottle(w, bottlePos, "l1_bottle1", "foundBottle1");
+        Zone(w, "Zone - Old Wreck", new Vector3(-40f, 3f, 32f), new Vector3(36f, 24f, 36f), "l1_wreck_zone", "", "");
         SceneStart(w, "Opening Crawl", "intro_crawl", 0.4f, "", "introSeen");
         OnFlag(w, "Beat - First Ruin Awakens", "l1_gate_open", "pearls1Collected");
 
@@ -220,7 +220,7 @@ public static class StoryWorldBuilder
         root.transform.position = Free(pos, length * 0.4f);
 
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(modelPath);
-        if (prefab != null) AddModel(root.transform, prefab, length);
+        if (prefab != null) { AddModel(root.transform, prefab, length); ApplyTextureFix(root, modelPath); }
         else Debug.LogWarning("[StoryWorldBuilder] missing model " + modelPath);
 
         StoryNPC npc = root.AddComponent<StoryNPC>();
@@ -229,6 +229,39 @@ public static class StoryWorldBuilder
         npc.labelHeight = length * 0.45f + 2f;
         AddLight(root.transform, Vector3.up * 1f, glow, 3f, length * 1.6f);
         return npc;
+    }
+
+    /// <summary>The dolphin FBX arrives with an untextured material; use the project's textured Delfino material instead.</summary>
+    private static void ApplyTextureFix(GameObject root, string modelPath)
+    {
+        string lowerPath = modelPath.ToLowerInvariant();
+        if (lowerPath.Contains("angler") || lowerPath.Contains("nemo"))
+        {
+            foreach (Renderer r in root.GetComponentsInChildren<Renderer>())
+            {
+                Material[] mats = r.sharedMaterials;
+                for (int i = 0; i < mats.Length; i++)
+                {
+                    string n = mats[i] != null ? mats[i].name : "";
+                    if (n == "LP_Mat") mats[i] = Mat("StoryLumiBody", new Color(0.28f, 0.16f, 0.38f));
+                    else if (n == "LP_Mat_Eyes") mats[i] = Mat("StoryLumiEyes", new Color(1f, 0.85f, 0.2f), 1.3f);
+                    else if (n == "cuerpo") mats[i] = Mat("StoryPipBody", new Color(1f, 0.5f, 0.1f));
+                    else if (n == "aletas") mats[i] = Mat("StoryPipFins", new Color(0.9f, 0.3f, 0.05f));
+                    else if (n == "ojo") { Material ojo = AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/ojo.mat"); if (ojo != null) mats[i] = ojo; }
+                }
+                r.sharedMaterials = mats;
+            }
+            return;
+        }
+        if (!modelPath.ToLowerInvariant().Contains("delfino")) return;
+        Material textured = AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/Materials/Delfino.mat");
+        if (textured == null) return;
+        foreach (Renderer r in root.GetComponentsInChildren<Renderer>())
+        {
+            Material[] mats = r.sharedMaterials;
+            for (int i = 0; i < mats.Length; i++) mats[i] = textured;
+            r.sharedMaterials = mats;
+        }
     }
 
     private static void AddModel(Transform root, GameObject prefab, float length)
@@ -325,6 +358,52 @@ public static class StoryWorldBuilder
     }
 
     // ------------------------------------------------------------------ environmental storytelling props
+
+    /// <summary>
+    /// The sunken ship (Assets/ship_wrecked.glb) half buried in the sand, with a hull collider.
+    /// Returns where the message bottle should float: beside the hull, on the side facing the player's start.
+    /// Falls back to the primitive wreck if the model is missing.
+    /// </summary>
+    private static Vector3 ShipWreck(Transform parent, Vector3 pos)
+    {
+        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/ship_wrecked.glb");
+        if (prefab == null)
+        {
+            Wreck(parent, pos);
+            return new Vector3(24f, 1.5f, 18f);
+        }
+
+        GameObject root = new GameObject("Old Wreck (ship)");
+        root.transform.SetParent(parent, false);
+        root.transform.position = pos;
+        GameObject inst = (GameObject)PrefabUtility.InstantiatePrefab(prefab, root.transform);
+        foreach (Collider c in inst.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
+
+        // about 24 units long, standing on the root's origin
+        Bounds b = BoundsOf(inst);
+        inst.transform.localScale = inst.transform.localScale * (24f / Mathf.Max(b.size.x, b.size.z));
+        b = BoundsOf(inst);
+        inst.transform.position += new Vector3(root.transform.position.x - b.center.x, root.transform.position.y - b.min.y, root.transform.position.z - b.center.z);
+        b = BoundsOf(inst);
+
+        // one box collider for the hull so the player and fish cannot swim through it
+        BoxCollider box = root.AddComponent<BoxCollider>();
+        box.center = new Vector3(0f, b.size.y * 0.42f, 0f);
+        box.size = new Vector3(b.size.x * 0.8f, b.size.y * 0.7f, b.size.z * 0.85f);
+
+        // it came to rest leaning over on the slope, keel buried in the sand (sand surface is at y = -4.5)
+        root.transform.rotation = Quaternion.Euler(5f, 35f, 12f);
+        b = BoundsOf(inst);
+        root.transform.position += new Vector3(0f, (-4.5f - 1.5f) - b.min.y, 0f);
+
+        Vector3 right = root.transform.right;
+        Vector3 playerStart = new Vector3(-0.8f, 0f, 6.4f);
+        float side = b.size.x * 0.5f + 4f;
+        Vector3 a1 = root.transform.position + right * side;
+        Vector3 a2 = root.transform.position - right * side;
+        Vector3 pick = (new Vector3(a1.x, 0f, a1.z) - playerStart).sqrMagnitude < (new Vector3(a2.x, 0f, a2.z) - playerStart).sqrMagnitude ? a1 : a2;
+        return new Vector3(pick.x, 1.5f, pick.z);
+    }
 
     private static void Wreck(Transform parent, Vector3 pos)
     {
