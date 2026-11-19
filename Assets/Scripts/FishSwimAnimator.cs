@@ -32,6 +32,17 @@ public class FishSwimAnimator : MonoBehaviour
     /// <summary>The direction the fish's head is pointing, in world space.</summary>
     public Vector3 Heading { get { return heading; } }
 
+    // read by FishPartAnimator so the tail fin follows the same tail beat as the body
+    public float Beat { get { return beat; } }
+    public float Phase { get { return phase; } }
+    public float Speed01 { get { return speed01; } }
+    /// <summary>1 while the fish is being steered, fading to 0 when it is stunned or no longer steered.</summary>
+    public float ActiveAmount { get { return Mathf.Clamp01(1f - (Time.time - lastSteerTime) * 5f); } }
+    /// <summary>The model's head direction in the fish's local space.</summary>
+    public Vector3 HeadLocal { get; private set; }
+
+    private float bodyWiggleScale = 1f;
+
     private Rigidbody rb;
     private Quaternion headOffset = Quaternion.identity;
     private Quaternion baseRotation;
@@ -52,6 +63,16 @@ public class FishSwimAnimator : MonoBehaviour
         beat = Random.value;
         SetupOrientation();
         baseRotation = transform.rotation;
+
+        // How the body moves: rigged fish play their own swim clip, fish with a separate tail fin swing it,
+        // and only whole-body wagging is left for single-piece models.
+        if (GetComponent<FishRigAnimator>() != null) bodyWiggleScale = 0.3f;
+        else if (!nonFishBody)
+        {
+            FishPartAnimator parts = gameObject.AddComponent<FishPartAnimator>();
+            if (parts.Init(this, HeadLocal)) bodyWiggleScale = 0.6f;
+            else Destroy(parts);
+        }
     }
 
     private void Update()
@@ -97,7 +118,7 @@ public class FishSwimAnimator : MonoBehaviour
         float active = Mathf.Clamp01(1f - (Time.time - lastSteerTime) * 5f);
         if (active <= 0f) return;
 
-        float amp = wiggleDegrees * (0.5f + 0.5f * speed01) * active * (nonFishBody ? 0.3f : 1f);
+        float amp = wiggleDegrees * (0.5f + 0.5f * speed01) * active * (nonFishBody ? 0.3f : bodyWiggleScale);
         float yaw = Mathf.Sin((beat + phase) * 2f * Mathf.PI) * amp;
         transform.rotation = Quaternion.AngleAxis(yaw, Vector3.up) * baseRotation;
     }
@@ -165,6 +186,7 @@ public class FishSwimAnimator : MonoBehaviour
             if (lb.size.x > lb.size.z * 1.15f) head = Vector3.right * DetectHeadSignAlongX(parts, lb);
         }
 
+        HeadLocal = head;
         if (head != Vector3.forward) headOffset = Quaternion.FromToRotation(head, Vector3.forward);
 
         // start out heading where the model's head currently points
