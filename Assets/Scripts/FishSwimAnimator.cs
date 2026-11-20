@@ -47,7 +47,7 @@ public class FishSwimAnimator : MonoBehaviour
     private Quaternion headOffset = Quaternion.identity;
     private Quaternion baseRotation;
     private Vector3 heading = Vector3.forward;
-    private float bank, beat, phase, speed01, clearance = 2.5f;
+    private float bank, beat, phase, speed01, clearance = 2.5f, clearanceV = 1.5f;
     private float lastSteerTime = -10f;
 
     public static FishSwimAnimator Ensure(GameObject go)
@@ -136,9 +136,9 @@ public class FishSwimAnimator : MonoBehaviour
     {
         Vector3 pos = transform.position;
         RaycastHit hit;
-        if (Physics.Raycast(pos, Vector3.down, out hit, clearance, ~0, QueryTriggerInteraction.Ignore) && hit.rigidbody == null)
+        if (Physics.Raycast(pos, Vector3.down, out hit, clearanceV, ~0, QueryTriggerInteraction.Ignore) && hit.rigidbody == null)
             dir.y = Mathf.Max(dir.y, 0.4f);
-        if (Physics.Raycast(pos, Vector3.up, out hit, clearance, ~0, QueryTriggerInteraction.Ignore) && hit.rigidbody == null)
+        if (Physics.Raycast(pos, Vector3.up, out hit, clearanceV, ~0, QueryTriggerInteraction.Ignore) && hit.rigidbody == null)
             dir.y = Mathf.Min(dir.y, -0.3f);
 
         Vector3 flat = Flat(dir);
@@ -172,7 +172,11 @@ public class FishSwimAnimator : MonoBehaviour
             if (s.sharedMesh != null) parts.Add(new Part { mesh = s.sharedMesh, t = s.transform });
 
         Collider col = GetComponentInChildren<Collider>();
-        if (col != null) clearance = Mathf.Max(2.5f, col.bounds.extents.magnitude * 1.1f);
+        if (col != null)
+        {
+            clearance = Mathf.Max(2.5f, col.bounds.extents.magnitude * 1.1f);
+            clearanceV = Mathf.Max(1.5f, col.bounds.extents.y * 1.5f);   // long fish like dolphins are not tall: do not treat the floor as close
+        }
 
         Vector3 head = Vector3.forward;
         if (headAxis != HeadAxis.Auto)

@@ -30,8 +30,10 @@ public static class StoryWorldBuilder
         Scene sc = Open(ScenesDir + "Level 1.unity");
         Transform w = NewRoot();
 
-        MakeNpc(w, "Marlo", FishDir + "delfino_done.fbx", 16f, new Vector3(-18f, 8f, 18f), new Color(0.5f, 0.9f, 1f),
+        StoryNPC marlo = MakeNpc(w, "Marlo", FishDir + "delfino_done.fbx", 16f, new Vector3(-18f, 8f, 18f), new Color(0.5f, 0.9f, 1f),
             C("", "metMentor", "l1_marlo_first"), C("foundBottle1", "", "l1_marlo_hint2"), C("metMentor", "", "l1_marlo_hint1"));
+        marlo.swimRadius = 6.5f;
+        marlo.swimSpeed = 2f;
 
         Vector3 bottlePos = ShipWreck(w, new Vector3(-40f, -3.2f, 32f));
         Bottle(w, bottlePos, "l1_bottle1", "foundBottle1");
@@ -47,8 +49,10 @@ public static class StoryWorldBuilder
         Scene sc = Open(ScenesDir + "Level 2.unity");
         Transform w = NewRoot();
 
-        MakeNpc(w, "Lumi", FishDir + "Anglerfish_Final.fbx", 10f, new Vector3(-26f, 10f, 8f), new Color(1f, 0.85f, 0.4f),
+        StoryNPC lumi2 = MakeNpc(w, "Lumi", FishDir + "Anglerfish_Final.fbx", 10f, new Vector3(-26f, 10f, 8f), new Color(1f, 0.85f, 0.4f),
             C("tookShortcut", "", "l2_lumi_after_shortcut"), C("savedPip", "", "l2_lumi_after_pip"), C("", "metAnglerfish", "l2_lumi_first"));
+        lumi2.swimRadius = 4f;
+        lumi2.swimSpeed = 1.2f;
 
         StoryNPC pip = MakeNpc(w, "Pip", FishDir + "nemofish.fbx", 3.5f, new Vector3(-32f, 3f, 12f), new Color(1f, 0.6f, 0.3f),
             C("", "choiceMade", "l2_pip_first"), C("savedPip", "", "l2_pip_joined"), C("tookShortcut", "", "l2_pip_left"));
@@ -57,9 +61,7 @@ public static class StoryWorldBuilder
         pip.labelHeight = 3.5f;
         pip.gameObject.AddComponent<StoryCompanion>().followWhenFlag = "savedPip";
 
-        LanternGraveyard(w, new Vector3(36f, -3.8f, -32f));
         Bottle(w, new Vector3(30f, 1.5f, -28f), "l2_bottle2", "foundBottle2");
-        Zone(w, "Zone - Lantern Graveyard", new Vector3(36f, 3f, -32f), new Vector3(32f, 22f, 30f), "l2_graveyard_zone", "", "");
         SceneStart(w, "Arrival in the Open Water", "l2_arrival", 3.5f, "", "enteredOpenWater");
 
         return Save(sc, "Level 2");
@@ -73,6 +75,8 @@ public static class StoryWorldBuilder
         StoryNPC lumi = MakeNpc(w, "Lumi", FishDir + "Anglerfish_Final.fbx", 10f, new Vector3(14f, 9f, 6f), new Color(1f, 0.85f, 0.4f),
             C("pearls3Collected", "", "l3_lumi_after"), C("", "", "l3_lumi_hint"));
         lumi.existsOnlyWhenFlag = "tookShortcut";
+        lumi.swimRadius = 4f;
+        lumi.swimSpeed = 1.2f;
 
         StoryNPC pip = MakeNpc(w, "Pip", FishDir + "nemofish.fbx", 3.5f, new Vector3(2f, 9f, -7f), new Color(1f, 0.6f, 0.3f),
             C("pearls3Collected", "", "l3_pip_after"), C("", "", "l3_pip_chat"));
@@ -82,10 +86,7 @@ public static class StoryWorldBuilder
         pip.labelHeight = 3.5f;
         pip.gameObject.AddComponent<StoryCompanion>().followWhenFlag = "savedPip";
 
-        BoneField(w, new Vector3(40f, -3.6f, 20f));
         Bottle(w, new Vector3(33f, 1.5f, 16f), "l3_bottle3", "foundBottle3");
-        RuneTrail(w, new Vector3(12f, 3f, 0f), new Vector3(-28f, 0f, 0f), 9);
-        Zone(w, "Zone - Bone Field", new Vector3(40f, 3f, 20f), new Vector3(34f, 22f, 28f), "l3_bone_zone", "", "");
         Zone(w, "Zone - Sea King's Chamber", new Vector3(0f, 2f, 0f), new Vector3(46f, 34f, 46f), "l3_ruins_zone", "pearls3Collected", "goldenLightTaken");
         SceneStart(w, "Arrival (Pip)", "l3_arrival_pip", 3.5f, "savedPip", "");
         SceneStart(w, "Arrival (Lumi)", "l3_arrival_lumi", 3.5f, "tookShortcut", "");
@@ -277,6 +278,44 @@ public static class StoryWorldBuilder
         inst.transform.localScale = inst.transform.localScale * s;
         b = BoundsOf(inst);
         inst.transform.position += root.position - b.center;
+
+        // make sure the head points along +Z (the direction the character swims in)
+        if (HeadSignZ(inst, root.position) < 0f) inst.transform.RotateAround(root.position, Vector3.up, 180f);
+    }
+
+    /// <summary>+1 if the model's head is toward +Z, -1 if toward -Z. Uses eye objects first, then the thicker end of the body.</summary>
+    private static float HeadSignZ(GameObject inst, Vector3 center)
+    {
+        Vector3 eyeSum = Vector3.zero;
+        int eyes = 0;
+        foreach (Transform t in inst.GetComponentsInChildren<Transform>())
+        {
+            if (t != inst.transform && t.name.ToLowerInvariant().Contains("eye")) { eyeSum += t.position - center; eyes++; }
+        }
+        if (eyes > 0 && Mathf.Abs((eyeSum / eyes).z) > 0.05f) return Mathf.Sign((eyeSum / eyes).z);
+
+        List<Vector3> pts = new List<Vector3>();
+        float minZ = float.MaxValue, maxZ = float.MinValue;
+        foreach (MeshFilter mf in inst.GetComponentsInChildren<MeshFilter>())
+        {
+            if (mf.sharedMesh == null || !mf.sharedMesh.isReadable) continue;
+            Vector3[] vs = mf.sharedMesh.vertices;
+            int stride = Mathf.Max(1, vs.Length / 1500);
+            for (int i = 0; i < vs.Length; i += stride)
+            {
+                Vector3 w = mf.transform.TransformPoint(vs[i]) - center;
+                pts.Add(w);
+                minZ = Mathf.Min(minZ, w.z); maxZ = Mathf.Max(maxZ, w.z);
+            }
+        }
+        if (pts.Count < 20) return 1f;
+        float len = maxZ - minZ, posMin = float.MaxValue, posMax = float.MinValue, negMin = float.MaxValue, negMax = float.MinValue;
+        foreach (Vector3 v in pts)
+        {
+            if (v.z > maxZ - len * 0.25f) { posMin = Mathf.Min(posMin, v.x); posMax = Mathf.Max(posMax, v.x); }
+            if (v.z < minZ + len * 0.25f) { negMin = Mathf.Min(negMin, v.x); negMax = Mathf.Max(negMax, v.x); }
+        }
+        return (posMax - posMin) >= (negMax - negMin) ? 1f : -1f;
     }
 
     private static Bounds BoundsOf(GameObject g)
