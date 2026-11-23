@@ -45,7 +45,7 @@ public class PauseMenu : MonoBehaviour
         }
 
         if (!StoryStateManager.InLevel) return;
-        if (StoryUI.EscapePressed() && Time.timeScale > 0.01f && !DialogueManager.IsBusy && !CinematicManager.Busy && !LevelTransition.Loading)
+        if (StoryUI.EscapePressed() && Time.timeScale > 0.01f && !DialogueManager.IsBusy && !CinematicManager.Busy && !LevelTransitionManager.Loading)
             Open();
     }
 

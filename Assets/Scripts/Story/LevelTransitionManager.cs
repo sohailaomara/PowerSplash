@@ -9,9 +9,9 @@ using UnityEngine.UI;
 /// If something is missing the player gets a hint and the change happens as soon as the missing beat is done.
 /// The loading screen shows a recap of the story so far and the next objective, then the next scene loads.
 /// </summary>
-public class LevelTransition : MonoBehaviour
+public class LevelTransitionManager : MonoBehaviour
 {
-    public static LevelTransition Instance { get; private set; }
+    public static LevelTransitionManager Instance { get; private set; }
 
     /// <summary>The loading screen is up (other story UI waits).</summary>
     public static bool Loading { get; private set; }

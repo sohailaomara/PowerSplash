@@ -89,7 +89,7 @@ public class ObjectiveManager : MonoBehaviour
 
     private void Update()
     {
-        bool show = StoryStateManager.InLevel && !CinematicManager.Busy && !LevelTransition.Loading;
+        bool show = StoryStateManager.InLevel && !CinematicManager.Busy && !LevelTransitionManager.Loading;
         if (canvasGO.activeSelf != show) canvasGO.SetActive(show);
         if (!show) return;
 

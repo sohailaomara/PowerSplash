@@ -81,7 +81,7 @@ public class DialogueManager : MonoBehaviour
     private void TryStartNext()
     {
         if (queue.Count == 0) return;
-        if (Time.timeScale <= 0.01f || CinematicManager.Busy || LevelTransition.Loading) return;
+        if (Time.timeScale <= 0.01f || CinematicManager.Busy || LevelTransitionManager.Loading) return;
 
         Request r = queue.Dequeue();
         if (r.data.presentation == DialoguePresentation.Crawl)

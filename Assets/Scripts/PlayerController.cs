@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem; // Added for New Input System
 
 [RequireComponent(typeof(Rigidbody))]
-public class FishMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float normalSpeed = 8f;

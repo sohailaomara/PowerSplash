@@ -40,7 +40,7 @@ public class StoryNPC : Interactable
     {
         get
         {
-            return Time.timeScale > 0.01f && !DialogueManager.IsBusy && !CinematicManager.Busy && !LevelTransition.Loading && Pick() != null;
+            return Time.timeScale > 0.01f && !DialogueManager.IsBusy && !CinematicManager.Busy && !LevelTransitionManager.Loading && Pick() != null;
         }
     }
 

@@ -17,7 +17,7 @@ public class RockGate : MonoBehaviour
 
     private void Start()
     {
-        if (runeLight != null) runeLight.color = new Color(1f, 0.25f, 0.15f);
+        if (runeLight != null) runeLight.color = AccessibilityOptions.Danger;
     }
 
     private void Update()
@@ -28,6 +28,7 @@ public class RockGate : MonoBehaviour
 
     private IEnumerator Open()
     {
+        ScreenShake.Shake(0.35f, 2.5f);   // the ruin wakes: shake the camera
         opened = true;
         GameHUD.Message("All pearls found - the ancient gate rumbles open!", 4f);
         if (CameraDirector.Instance != null && slab != null)
@@ -43,7 +44,7 @@ public class RockGate : MonoBehaviour
             float e = Mathf.SmoothStep(0f, 1f, t / openSeconds);
             float shake = Mathf.Sin(Time.time * 40f) * 0.15f * (1f - e);
             slab.position = start + Vector3.down * (openDistance * e) + new Vector3(0f, 0f, shake);
-            if (runeLight != null) runeLight.color = Color.Lerp(new Color(1f, 0.25f, 0.15f), new Color(0.3f, 1f, 0.4f), e);
+            if (runeLight != null) runeLight.color = Color.Lerp(AccessibilityOptions.Danger, AccessibilityOptions.Safe, e);
             yield return null;
         }
 

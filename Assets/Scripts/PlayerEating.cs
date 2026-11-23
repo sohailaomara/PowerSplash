@@ -158,10 +158,10 @@ public class PlayerEating : MonoBehaviour
         int nextIndex = PlayerProgress.SceneIndexForTier(tier);
         bool sceneExists = nextIndex < SceneManager.sceneCountInBuildSettings && nextIndex != SceneManager.GetActiveScene().buildIndex;
 
-        if (tier > PlayerProgress.SceneTier() && sceneExists && LevelTransition.Instance != null)
+        if (tier > PlayerProgress.SceneTier() && sceneExists && LevelTransitionManager.Instance != null)
         {
-            // Story-gated level change: LevelTransition opens the next level once the story flags allow it
-            LevelTransition.Instance.RequestTier(tier);
+            // Story-gated level change: LevelTransitionManager opens the next level once the story flags allow it
+            LevelTransitionManager.Instance.RequestTier(tier);
         }
         else if (tier > PlayerProgress.SceneTier() && sceneExists && !leaving)
         {
@@ -205,7 +205,7 @@ public class PlayerEating : MonoBehaviour
 
         // The main fish was eaten: it vanishes and stops responding to input.
         foreach (Renderer r in GetComponentsInChildren<Renderer>()) r.enabled = false;
-        FishMovement move = GetComponent<FishMovement>();
+        PlayerController move = GetComponent<PlayerController>();
         if (move != null) move.enabled = false;
         if (rb != null) { rb.linearVelocity = Vector3.zero; rb.angularVelocity = Vector3.zero; }
 

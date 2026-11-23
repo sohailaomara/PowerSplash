@@ -22,6 +22,18 @@ public static class StoryUI
         }
     }
 
+    private static Font themeFont;
+
+    /// <summary>Chunky display font used by the main menu (Assets/Resources/Fonts). Falls back to the default font.</summary>
+    public static Font ThemeFont
+    {
+        get
+        {
+            if (themeFont == null) themeFont = Resources.Load<Font>("Fonts/LilitaOne-Regular");
+            return themeFont != null ? themeFont : DefaultFont;
+        }
+    }
+
     /// <summary>Creates a screen-space overlay canvas that scales with a 1920x1080 reference.</summary>
     public static Canvas MakeCanvas(string name, int sortingOrder, Transform parent)
     {

@@ -183,6 +183,7 @@ public class AbilitySystem : MonoBehaviour
 
     private void DoShock()
     {
+        ScreenShake.Shake(0.3f, 0.35f);   // feedback for the Shock burst
         Vector3 pos = transform.position;
         int stunned = 0;
         foreach (EntityData e in FindObjectsByType<EntityData>(FindObjectsSortMode.None))
@@ -225,7 +226,7 @@ public class AbilitySystem : MonoBehaviour
         {
             foreach (MonoBehaviour mb in GetComponents<MonoBehaviour>())
             {
-                if (mb != null && mb.GetType().Name.StartsWith("FishMovement")) { moveComp = mb; break; }
+                if (mb != null && mb is PlayerController) { moveComp = mb; break; }
             }
         }
         if (moveComp == null) return;

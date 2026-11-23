@@ -30,7 +30,7 @@ public static class StoryWorldBuilder
         Scene sc = Open(ScenesDir + "Level 1.unity");
         Transform w = NewRoot();
 
-        StoryNPC marlo = MakeNpc(w, "Marlo", FishDir + "delfino_done.fbx", 16f, new Vector3(-18f, 8f, 18f), new Color(0.5f, 0.9f, 1f),
+        StoryNPC marlo = MakeNpc(w, "Marlo", FishDir + "Fishes_Big_Dolphin_1.glb", 16f, new Vector3(-18f, 8f, 18f), new Color(0.5f, 0.9f, 1f),
             C("", "metMentor", "l1_marlo_first"), C("foundBottle1", "", "l1_marlo_hint2"), C("metMentor", "", "l1_marlo_hint1"));
         marlo.swimRadius = 6.5f;
         marlo.swimSpeed = 2f;
@@ -270,9 +270,17 @@ public static class StoryWorldBuilder
         GameObject inst = (GameObject)PrefabUtility.InstantiatePrefab(prefab, root);
         foreach (Collider c in inst.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
 
+        // delfino_done.fbx holds THREE dolphins (and six eyes), all facing +X. Keep a single dolphin and turn it so its head points along +Z.
+        bool dolphin = prefab.name.ToLowerInvariant().Contains("delfino");
+        if (dolphin)
+        {
+            KeepOneDolphin(inst);
+            inst.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
+        }
+
         // Put the body's long axis along the NPC's Z axis, then scale to the wanted length and centre on the NPC
         Bounds b = BoundsOf(inst);
-        if (b.size.x > b.size.z) inst.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
+        if (!dolphin && b.size.x > b.size.z) inst.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         b = BoundsOf(inst);
         float s = length / Mathf.Max(b.size.z, 0.0001f);
         inst.transform.localScale = inst.transform.localScale * s;
@@ -280,7 +288,21 @@ public static class StoryWorldBuilder
         inst.transform.position += root.position - b.center;
 
         // make sure the head points along +Z (the direction the character swims in)
-        if (HeadSignZ(inst, root.position) < 0f) inst.transform.RotateAround(root.position, Vector3.up, 180f);
+        if (!dolphin && HeadSignZ(inst, root.position) < 0f) inst.transform.RotateAround(root.position, Vector3.up, 180f);
+    }
+
+    /// <summary>Removes the second and third dolphin (and their eyes) from the delfino model, leaving the first dolphin with its own two eyes.</summary>
+    private static void KeepOneDolphin(GameObject inst)
+    {
+        string[] keep = { "Delfino", "Sphere.002", "Sphere.003" };
+        List<GameObject> remove = new List<GameObject>();
+        foreach (Transform t in inst.transform)
+        {
+            bool keepIt = false;
+            foreach (string k in keep) if (t.name == k) keepIt = true;
+            if (!keepIt) remove.Add(t.gameObject);
+        }
+        foreach (GameObject g in remove) Object.DestroyImmediate(g);
     }
 
     /// <summary>+1 if the model's head is toward +Z, -1 if toward -Z. Uses eye objects first, then the thicker end of the body.</summary>
@@ -290,7 +312,7 @@ public static class StoryWorldBuilder
         int eyes = 0;
         foreach (Transform t in inst.GetComponentsInChildren<Transform>())
         {
-            if (t != inst.transform && t.name.ToLowerInvariant().Contains("eye")) { eyeSum += t.position - center; eyes++; }
+            if (t != inst.transform && t.name.ToLowerInvariant().Contains("eye")) { Renderer er = t.GetComponent<Renderer>(); eyeSum += (er != null ? er.bounds.center : t.position) - center; eyes++; }
         }
         if (eyes > 0 && Mathf.Abs((eyeSum / eyes).z) > 0.05f) return Mathf.Sign((eyeSum / eyes).z);
 
@@ -546,5 +568,64 @@ public static class StoryWorldBuilder
             if (i % 3 == 0) AddLight(g.transform, Vector3.up * 0.5f, new Color(0.3f, 0.9f, 1f), 2f, 9f);
         }
     }
+
+
+/// <summary>Removes every child with this name so running a props step twice never duplicates anything.</summary>
+    private static void ClearChild(Transform parent, string childName)
+    {
+        Transform t = parent.Find(childName);
+        while (t != null)
+        {
+            Object.DestroyImmediate(t.gameObject);
+            t = parent.Find(childName);
+        }
+    }
+
+
+/// <summary>The scene's existing Story World object (created only if it is missing, never rebuilt).</summary>
+    private static Transform ExistingRoot()
+    {
+        GameObject w = GameObject.Find("Story World");
+        return w != null ? w.transform : new GameObject("Story World").transform;
+    }
+
+
+/// <summary>Adds the Level 3 bone field, the rune trail that points at the ruins and the bone-field narrative zone.</summary>
+    public static string AddLevel3Props()
+    {
+        Scene sc = Open(ScenesDir + "Level 3.unity");
+        Transform w = ExistingRoot();
+        ClearChild(w, "Bone Field");
+        ClearChild(w, "Rune Trail");
+        ClearChild(w, "Zone - Bone Field");
+
+        // giant bones of whatever guarded the sea king's chamber, and glowing runes that lead toward the ruins
+        BoneField(w, new Vector3(-34f, -4.5f, -30f));
+        RuneTrail(w, new Vector3(6f, -3.6f, -3f), new Vector3(-24f, -3.6f, 3f), 9);
+        Zone(w, "Zone - Bone Field", new Vector3(-34f, 5f, -30f), new Vector3(46f, 24f, 40f), "l3_bone_zone", "", "foundBoneField");
+        return Save(sc, "Level 3 (props)");
+    }
+
+
+/// <summary>
+    /// Adds the Level 2 lantern graveyard and its narrative zone to the EXISTING Story World, without touching the NPCs,
+    /// bottles or triggers that are already placed (unlike Build Level 2, which rebuilds everything).
+    /// </summary>
+    public static string AddLevel2Props()
+    {
+        Scene sc = Open(ScenesDir + "Level 2.unity");
+        Transform w = ExistingRoot();
+        ClearChild(w, "Lantern Graveyard");
+        ClearChild(w, "Zone - Lantern Graveyard");
+
+        // dead lanterns tied to broken ropes, the traces of the fish Lumi led away
+        LanternGraveyard(w, new Vector3(22f, -4.5f, -28f));
+        Zone(w, "Zone - Lantern Graveyard", new Vector3(22f, 4f, -28f), new Vector3(34f, 22f, 34f), "l2_graveyard_zone", "", "foundGraveyard");
+        return Save(sc, "Level 2 (props)");
+    }
+
+
+[MenuItem("Story/Add Environmental Props (Levels 2 and 3)")]
+    public static void AddPropsMenu() { Debug.Log(AddLevel2Props()); Debug.Log(AddLevel3Props()); }
 }
 #endif

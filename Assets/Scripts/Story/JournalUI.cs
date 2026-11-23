@@ -61,7 +61,7 @@ public class JournalUI : MonoBehaviour
         }
 
         if (!StoryStateManager.InLevel) return;
-        if (k.jKey.wasPressedThisFrame && Time.timeScale > 0.01f && !DialogueManager.IsBusy && !CinematicManager.Busy && !LevelTransition.Loading)
+        if (k.jKey.wasPressedThisFrame && Time.timeScale > 0.01f && !DialogueManager.IsBusy && !CinematicManager.Busy && !LevelTransitionManager.Loading)
             Open();
     }
 

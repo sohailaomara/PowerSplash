@@ -55,9 +55,11 @@ public class StoryStateManager : MonoBehaviour
         go.AddComponent<ObjectiveManager>();
         go.AddComponent<JournalUI>();
         go.AddComponent<CinematicManager>();
-        go.AddComponent<LevelTransition>();
+        go.AddComponent<LevelTransitionManager>();
         go.AddComponent<PauseMenu>();
         go.AddComponent<StoryAudio>();
+        go.AddComponent<ScreenShake>();           // camera shake for big beats
+        go.AddComponent<AccessibilityOptions>();  // colorblind-safe palette (F2)
     }
 
     private void Awake()
