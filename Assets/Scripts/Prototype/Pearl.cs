@@ -30,7 +30,7 @@ public class Pearl : MonoBehaviour
 
         taken = true;
         PlayerInventory.AddPearl();
-        GameHUD.Message("Ancient Pearl collected  (" + PlayerInventory.Pearls + " / " + PlayerInventory.PearlsRequired + ")", 3f);
+        StoryAudio.Play(StorySfx.Pearl); GameHUD.Message("Ancient Pearl collected  (" + PlayerInventory.Pearls + " / " + PlayerInventory.PearlsRequired + ")", 3f);
         Fx.Burst(transform.position, new Color(1f, 0.95f, 0.8f), 30, 0.4f, 6f, 1f);
         Fx.Flash(transform.position, new Color(1f, 0.95f, 0.8f), 14f, 6f, 0.5f);
         Destroy(gameObject);

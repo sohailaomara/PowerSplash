@@ -40,7 +40,7 @@ public class Beacon : Interactable
 
         if (on)
         {
-            GameHUD.Message("The reef beacon lights up the corals!", 3f);
+            StoryAudio.Play(StorySfx.Beacon); GameHUD.Message("The reef beacon lights up the corals!", 3f);
             Fx.Burst(transform.position + Vector3.up * 2f, lampOnColor, 25, 0.5f, 5f, 1f);
             if (CameraDirector.Instance != null)
                 CameraDirector.Instance.PlayCinematic(transform, 3.5f, new Vector3(-9f, 4f, -11f), 10f);

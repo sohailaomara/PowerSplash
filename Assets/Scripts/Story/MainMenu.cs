@@ -66,6 +66,7 @@ public class MainMenu : MonoBehaviour
     private readonly List<Kelp> kelp = new List<Kelp>();
     private int[][] rows;
     private int selected;
+    private int hoverSfxIndex;
     private Vector2 lastMouse;
 
     private RectTransform[] shafts;
@@ -105,13 +106,13 @@ public class MainMenu : MonoBehaviour
         RenderSettings.fogColor = deep;
         RenderSettings.fogDensity = 0.012f;
         RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-        RenderSettings.ambientLight = new Color(0.16f, 0.34f, 0.44f, 1f);
+        RenderSettings.ambientLight = new Color(0.12f, 0.26f, 0.34f, 1f);
 
         GameObject sun = new GameObject("Menu Light");
         Light l = sun.AddComponent<Light>();
         l.type = LightType.Directional;
         l.color = new Color(0.65f, 0.92f, 1f, 1f);
-        l.intensity = 1.3f;
+        l.intensity = 1.0f;
         sun.transform.rotation = Quaternion.Euler(35f, -25f, 0f);
     }
 
@@ -144,7 +145,7 @@ public class MainMenu : MonoBehaviour
 
             MenuFish mf = go.AddComponent<MenuFish>();
             mf.dir = dir;
-            mf.speed = z * Random.Range(0.06f, 0.12f);
+            mf.speed = z * Random.Range(0.16f, 0.30f);   // the swim physics settles at about 40% of this
             mf.bound = z * 1.2f + 12f;
         }
     }
@@ -326,6 +327,7 @@ public class MainMenu : MonoBehaviour
         float dt = Time.unscaledDeltaTime;
         float t = Time.unscaledTime;
         HandleInput();
+        if (selected != hoverSfxIndex) { hoverSfxIndex = selected; StoryAudio.Play(StorySfx.UIHover); }
         for (int i = 0; i < buttons.Count; i++) buttons[i].Animate(i == selected, dt, t);
 
         for (int i = 0; shafts != null && i < shafts.Length; i++)
@@ -396,7 +398,7 @@ public class MainMenu : MonoBehaviour
 
         bool confirm = (k != null && (k.enterKey.wasPressedThisFrame || k.numpadEnterKey.wasPressedThisFrame || k.spaceKey.wasPressedThisFrame)) ||
                        (m != null && m.leftButton.wasPressedThisFrame && StoryUI.PointerOver(buttons[selected].rt));
-        if (confirm && buttons[selected].action != null) buttons[selected].action();
+        if (confirm && buttons[selected].action != null) { StoryAudio.Play(StorySfx.UIClick); buttons[selected].action(); }
     }
 
     private void FindPos(out int row, out int col)
@@ -445,9 +447,11 @@ public class MainMenu : MonoBehaviour
 /// <summary>Small procedurally drawn sprites for the menu, so no image assets are needed.</summary>
 internal static class MenuArt
 {
-    private static Sprite rounded, circle, glow, vignette, gradient;
+    private static Sprite rounded, panel, circle, glow, vignette, gradient;
 
-    public static Sprite Rounded { get { if (rounded == null) rounded = MakeRounded(); return rounded; } }
+    public static Sprite Rounded { get { if (rounded == null) rounded = MakeRounded(44f); return rounded; } }
+    /// <summary>Rounded rectangle with smaller corners, for large panels.</summary>
+    public static Sprite Panel { get { if (panel == null) panel = MakeRounded(20f); return panel; } }
     public static Sprite Circle { get { if (circle == null) circle = MakeCircle(); return circle; } }
     public static Sprite Glow { get { if (glow == null) glow = MakeGlow(); return glow; } }
     public static Sprite Vignette { get { if (vignette == null) vignette = MakeVignette(); return vignette; } }
@@ -469,10 +473,9 @@ internal static class MenuArt
         return Sprite.Create(t, new Rect(0, 0, t.width, t.height), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect, border);
     }
 
-    private static Sprite MakeRounded()
+    private static Sprite MakeRounded(float r)
     {
         const int n = 128;
-        const float r = 44f;
         Texture2D t = NewTex(n, n);
         Color32[] px = new Color32[n * n];
         for (int y = 0; y < n; y++)

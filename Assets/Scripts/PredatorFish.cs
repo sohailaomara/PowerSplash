@@ -68,7 +68,7 @@ public class PredatorFish : MonoBehaviour
         {
             case PredatorState.Patrol:
                 if (distToPlayer <= alertRadius && playerIsSmaller)
-                    currentState = PredatorState.Alert;
+                    { currentState = PredatorState.Alert; StoryAudio.Play(StorySfx.Alert); }
                 break;
 
             case PredatorState.Alert:

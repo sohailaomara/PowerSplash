@@ -68,7 +68,7 @@ public class BubbleLure : MonoBehaviour
         Active = lure.transform;
         lifeTimer = lifetime;
         cooldownTimer = cooldown;
-        GameHUD.Message("Bubble lure dropped - nearby fish swim toward it", 3f);
+        StoryAudio.Play(StorySfx.LureDrop); GameHUD.Message("Bubble lure dropped - nearby fish swim toward it", 3f);
     }
 
     private void Despawn()

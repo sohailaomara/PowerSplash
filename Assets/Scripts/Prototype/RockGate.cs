@@ -30,7 +30,7 @@ public class RockGate : MonoBehaviour
     {
         ScreenShake.Shake(0.35f, 2.5f);   // the ruin wakes: shake the camera
         opened = true;
-        GameHUD.Message("All pearls found - the ancient gate rumbles open!", 4f);
+        StoryAudio.Play(StorySfx.GateRumble); GameHUD.Message("All pearls found - the ancient gate rumbles open!", 4f);
         if (CameraDirector.Instance != null && slab != null)
             CameraDirector.Instance.PlayCinematic(slab, 5.5f, new Vector3(-22f, 6f, -20f), 12f);
 

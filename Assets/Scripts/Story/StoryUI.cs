@@ -34,6 +34,18 @@ public static class StoryUI
         }
     }
 
+    private static Font bodyFont;
+
+    /// <summary>Clean rounded font for paragraphs and small text (Assets/Resources/Fonts). Falls back to the default font.</summary>
+    public static Font BodyFont
+    {
+        get
+        {
+            if (bodyFont == null) bodyFont = Resources.Load<Font>("Fonts/VarelaRound-Regular");
+            return bodyFont != null ? bodyFont : DefaultFont;
+        }
+    }
+
     /// <summary>Creates a screen-space overlay canvas that scales with a 1920x1080 reference.</summary>
     public static Canvas MakeCanvas(string name, int sortingOrder, Transform parent)
     {
@@ -75,12 +87,24 @@ public static class StoryUI
         return img;
     }
 
+    /// <summary>A rounded glass panel: a coloured border with a translucent fill inside it. Returns the fill (parent children to it).</summary>
+    public static Image MakeGlass(string name, Transform parent, Vector2 anchor, Vector2 pos, Vector2 size, Color fill, Color border, out Image borderImage)
+    {
+        borderImage = MakeImage(name + " Border", parent, anchor, pos, size, border);
+        borderImage.sprite = MenuArt.Panel;
+        borderImage.type = Image.Type.Sliced;
+        Image f = MakeImage(name, borderImage.transform, new Vector2(0.5f, 0.5f), Vector2.zero, size - new Vector2(6f, 6f), fill);
+        f.sprite = MenuArt.Panel;
+        f.type = Image.Type.Sliced;
+        return f;
+    }
+
     public static Text MakeText(string name, Transform parent, Vector2 anchor, Vector2 pos, Vector2 size, int fontSize, TextAnchor align, bool wrap = false)
     {
         GameObject go = new GameObject(name);
         go.transform.SetParent(parent, false);
         Text t = go.AddComponent<Text>();
-        t.font = DefaultFont;
+        t.font = fontSize >= 34 ? ThemeFont : BodyFont;   // display font for titles, rounded body font for the rest
         t.fontSize = fontSize;
         t.alignment = align;
         t.color = Color.white;
@@ -119,30 +143,50 @@ public static class StoryUI
 }
 
 /// <summary>
-/// A vertical list of text buttons with mouse hover/click and keyboard navigation.
-/// Used by the main menu and the pause menu. Call Tick() from Update.
+/// A vertical list of pill buttons with mouse hover/click and keyboard navigation, in the same style as the main menu.
+/// Used by the pause menu. Call Tick() from Update.
 /// </summary>
 public class MenuList
 {
-    private readonly List<Text> labels = new List<Text>();
+    private class Item
+    {
+        public RectTransform rt;
+        public Image border, fill;
+        public Text label;
+        public float hover;
+    }
+
+    private readonly List<Item> items = new List<Item>();
     private readonly List<Action> actions = new List<Action>();
-    private readonly string[] names;
     private int selected;
     private Vector2 lastMouse;
 
     public MenuList(Transform parent, string[] names, Action[] callbacks, Vector2 anchor, Vector2 firstPos, float spacing, Vector2 size, int fontSize)
     {
-        this.names = names;
+        Vector2 mid = new Vector2(0.5f, 0.5f);
         for (int i = 0; i < names.Length; i++)
         {
-            Text t = StoryUI.MakeText("Menu Item " + i, parent, anchor, firstPos + new Vector2(0f, -spacing * i), size, fontSize, TextAnchor.MiddleCenter);
-            labels.Add(t);
+            Item it = new Item();
+            it.border = StoryUI.MakeImage("Menu Item " + i, parent, anchor, firstPos + new Vector2(0f, -spacing * i), size, Color.white);
+            it.border.sprite = MenuArt.Rounded;
+            it.border.type = Image.Type.Sliced;
+            it.rt = it.border.rectTransform;
+            it.fill = StoryUI.MakeImage("Fill", it.border.transform, mid, Vector2.zero, size - new Vector2(8f, 8f), Color.white);
+            it.fill.sprite = MenuArt.Rounded;
+            it.fill.type = Image.Type.Sliced;
+            it.label = StoryUI.MakeText("Label", it.border.transform, mid, Vector2.zero, size, fontSize, TextAnchor.MiddleCenter);
+            it.label.font = StoryUI.ThemeFont;
+            it.label.text = names[i];
+            Shadow sh = it.label.GetComponent<Shadow>();
+            if (sh != null) sh.enabled = false;
+            items.Add(it);
             actions.Add(callbacks[i]);
         }
-        Refresh();
+        Refresh(1f);
     }
 
-    public void Reset() { selected = 0; Refresh(); }
+    private int lastHoverSfx;
+    public void Reset() { selected = 0; lastHoverSfx = 0; Refresh(1f); }
 
     public void Tick()
     {
@@ -155,31 +199,36 @@ public class MenuList
             if ((p - lastMouse).sqrMagnitude > 1f)
             {
                 lastMouse = p;
-                for (int i = 0; i < labels.Count; i++)
-                    if (StoryUI.PointerOver(labels[i].rectTransform)) selected = i;
+                for (int i = 0; i < items.Count; i++)
+                    if (StoryUI.PointerOver(items[i].rt)) selected = i;
             }
         }
 
         if (k != null)
         {
-            if (k.downArrowKey.wasPressedThisFrame || k.sKey.wasPressedThisFrame) selected = (selected + 1) % labels.Count;
-            if (k.upArrowKey.wasPressedThisFrame || k.wKey.wasPressedThisFrame) selected = (selected - 1 + labels.Count) % labels.Count;
+            if (k.downArrowKey.wasPressedThisFrame || k.sKey.wasPressedThisFrame) selected = (selected + 1) % items.Count;
+            if (k.upArrowKey.wasPressedThisFrame || k.wKey.wasPressedThisFrame) selected = (selected - 1 + items.Count) % items.Count;
         }
 
         bool confirm = (k != null && (k.enterKey.wasPressedThisFrame || k.numpadEnterKey.wasPressedThisFrame || k.spaceKey.wasPressedThisFrame)) ||
-                       (m != null && m.leftButton.wasPressedThisFrame && StoryUI.PointerOver(labels[selected].rectTransform));
+                       (m != null && m.leftButton.wasPressedThisFrame && StoryUI.PointerOver(items[selected].rt));
 
-        Refresh();
-        if (confirm && actions[selected] != null) actions[selected]();
+        Refresh(Time.unscaledDeltaTime);
+        if (selected != lastHoverSfx) { lastHoverSfx = selected; StoryAudio.Play(StorySfx.UIHover); }
+        if (confirm && actions[selected] != null) { StoryAudio.Play(StorySfx.UIClick); actions[selected](); }
     }
 
-    private void Refresh()
+    private void Refresh(float dt)
     {
-        for (int i = 0; i < labels.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
-            bool on = i == selected;
-            labels[i].text = on ? ">  " + names[i] + "  <" : names[i];
-            labels[i].color = on ? new Color(1f, 0.9f, 0.4f) : new Color(0.85f, 0.95f, 1f);
+            Item it = items[i];
+            it.hover = Mathf.MoveTowards(it.hover, i == selected ? 1f : 0f, dt * 8f);
+            float e = it.hover * it.hover * (3f - 2f * it.hover);
+            it.fill.color = Color.Lerp(new Color(0.03f, 0.2f, 0.3f, 0.78f), new Color(0.42f, 0.9f, 1f, 0.97f), e);
+            it.border.color = Color.Lerp(new Color(0.45f, 0.85f, 0.95f, 0.6f), Color.white, e);
+            it.label.color = Color.Lerp(new Color(0.9f, 0.98f, 1f, 1f), new Color(0.03f, 0.1f, 0.18f, 1f), e);
+            it.rt.localScale = Vector3.one * Mathf.Lerp(1f, 1.05f, e);
         }
     }
 }

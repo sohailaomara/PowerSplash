@@ -24,8 +24,8 @@ public class JournalUI : MonoBehaviour
 
         StoryUI.MakeFullscreenImage("Dim", root, new Color(0f, 0.02f, 0.05f, 0.6f));
         Vector2 mid = new Vector2(0.5f, 0.5f);
-        Image panel = StoryUI.MakeImage("Journal Panel", root, mid, Vector2.zero, new Vector2(1560f, 880f), new Color(0.03f, 0.09f, 0.16f, 0.97f));
-        StoryUI.MakeImage("Accent", panel.transform, new Vector2(0.5f, 1f), Vector2.zero, new Vector2(1560f, 6f), new Color(0.35f, 0.85f, 0.95f, 1f));
+        Image panelEdge;
+        Image panel = StoryUI.MakeGlass("Journal Panel", root, mid, Vector2.zero, new Vector2(1560f, 880f), new Color(0.03f, 0.09f, 0.16f, 0.97f), new Color(0.45f, 0.85f, 0.95f, 0.9f), out panelEdge);
 
         Text title = StoryUI.MakeText("Title", panel.transform, new Vector2(0.5f, 1f), new Vector2(0f, -22f), new Vector2(900f, 70f), 56, TextAnchor.UpperCenter);
         title.text = "JOURNAL";
@@ -35,11 +35,13 @@ public class JournalUI : MonoBehaviour
         Text itemsHeader = StoryUI.MakeText("Items Header", panel.transform, topLeft, new Vector2(50f, -110f), new Vector2(600f, 40f), 32, TextAnchor.UpperLeft);
         itemsHeader.text = "INVENTORY";
         itemsHeader.color = new Color(0.5f, 0.92f, 1f);
+        itemsHeader.font = StoryUI.ThemeFont;
         itemsText = StoryUI.MakeText("Items", panel.transform, topLeft, new Vector2(50f, -160f), new Vector2(660f, 640f), 25, TextAnchor.UpperLeft, true);
 
         Text notesHeader = StoryUI.MakeText("Notes Header", panel.transform, topLeft, new Vector2(790f, -110f), new Vector2(600f, 40f), 32, TextAnchor.UpperLeft);
         notesHeader.text = "DISCOVERIES";
         notesHeader.color = new Color(0.5f, 0.92f, 1f);
+        notesHeader.font = StoryUI.ThemeFont;
         notesText = StoryUI.MakeText("Notes", panel.transform, topLeft, new Vector2(790f, -160f), new Vector2(720f, 640f), 25, TextAnchor.UpperLeft, true);
 
         Text hint = StoryUI.MakeText("Hint", panel.transform, new Vector2(0.5f, 0f), new Vector2(0f, 18f), new Vector2(700f, 30f), 22, TextAnchor.LowerCenter);

@@ -113,6 +113,7 @@ public class PlayerEating : MonoBehaviour
             GameHUD.Message("Yum!  +" + Mathf.RoundToInt(other.growthValue) + " growth", 1.5f);
         }
 
+        StoryAudio.Play(StorySfx.Eat);
         Fx.Burst(target.transform.position, new Color(0.75f, 0.92f, 1f, 0.9f), 14, 0.3f, 3f, 0.8f);
         // Eaten fish vanish immediately (Destroy only takes effect at the end of the frame)
         foreach (Renderer r in target.GetComponentsInChildren<Renderer>()) r.enabled = false;
@@ -155,6 +156,7 @@ public class PlayerEating : MonoBehaviour
 
     private void AnnounceTier(int tier)
     {
+        StoryAudio.Play(StorySfx.LevelUp);
         int nextIndex = PlayerProgress.SceneIndexForTier(tier);
         bool sceneExists = nextIndex < SceneManager.sceneCountInBuildSettings && nextIndex != SceneManager.GetActiveScene().buildIndex;
 
@@ -189,6 +191,7 @@ public class PlayerEating : MonoBehaviour
     private void Zap(EntityData predator)
     {
         GameObject target = predator.gameObject;
+        StoryAudio.Play(StorySfx.Zap);
         Stun.Apply(target, 4f);
         zappedAt[target] = Time.time;
         Rigidbody prb = target.GetComponent<Rigidbody>();
@@ -201,6 +204,7 @@ public class PlayerEating : MonoBehaviour
     private void Die(EntityData killer)
     {
         dead = true;
+        StoryAudio.Play(StorySfx.Hurt);
         Fx.Burst(transform.position, new Color(1f, 0.4f, 0.3f, 0.9f), 30, 0.4f, 6f, 1f);
 
         // The main fish was eaten: it vanishes and stops responding to input.

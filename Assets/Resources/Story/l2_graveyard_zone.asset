@@ -15,11 +15,11 @@ MonoBehaviour:
   presentation: 0
   lines:
   - speaker: You
-    portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
+    portrait: {fileID: 21300000, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
     text: Dozens of dead lanterns, scattered across the seabed, each one tied to
       a broken rope.
   - speaker: You
-    portrait: {fileID: -4255054504167156931, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
+    portrait: {fileID: 21300000, guid: 24d008a2918cc544f87755498eae8b2b, type: 3}
     text: They look just like the light on that fish's head. What happened to the
       ones who followed them?
   choices: []

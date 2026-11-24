@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>Sound effects the story systems can ask for.</summary>
-public enum StorySfx { Pickup, ObjectiveUpdate, ChoiceMove, ChoiceConfirm, Whoosh, GoldenSwell }
+public enum StorySfx { Pickup, ObjectiveUpdate, ChoiceMove, ChoiceConfirm, Whoosh, GoldenSwell, Eat, LevelUp, Hurt, Zap, AbilityGain, Inflate, Ink, SpeedBoost, Shock, AbilityEnd, Pearl, GateRumble, Beacon, LureDrop, Alert, UIClick, UIHover }
 
 /// <summary>
 /// Audio for the story, generated in code so the project needs no audio files:
@@ -15,7 +15,7 @@ public enum StorySfx { Pickup, ObjectiveUpdate, ChoiceMove, ChoiceConfirm, Whoos
 ///    and a golden swell when the Golden Clam's light is taken.
 /// All sounds are 2D and independent of Time.timeScale, so they keep playing while the game is paused for dialogue.
 /// </summary>
-public class StoryAudio : MonoBehaviour
+public partial class StoryAudio : MonoBehaviour
 {
     public static StoryAudio Instance { get; private set; }
 
@@ -37,8 +37,7 @@ public class StoryAudio : MonoBehaviour
     public static void Play(StorySfx sound)
     {
         if (Instance == null) return;
-        AudioClip clip;
-        if (Instance.sfx.TryGetValue(sound, out clip)) Instance.sfxSource.PlayOneShot(clip, 0.6f);
+        Instance.PlayInternal(sound);
     }
 
     /// <summary>One typewriter blip in the voice of the given speaker.</summary>
@@ -60,6 +59,7 @@ public class StoryAudio : MonoBehaviour
         ambientSource = MakeSource("Ambient", true);
         sfxSource = MakeSource("Sfx", false);
         blipSource = MakeSource("Blips", false);
+        BuildSfxPool();
         ambientSource.volume = 0f;
 
         BuildClips();
@@ -138,6 +138,7 @@ public class StoryAudio : MonoBehaviour
         sfx[StorySfx.ChoiceConfirm] = MakeArpeggio("Choice Confirm", new float[] { 523.25f, 784f }, 0.06f, 0.25f);
         sfx[StorySfx.Whoosh] = MakeWhoosh();
         sfx[StorySfx.GoldenSwell] = MakeSwell();
+        BuildGameplaySfx();
     }
 
     private static string BlipKey(string speaker)

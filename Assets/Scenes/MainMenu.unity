@@ -148,6 +148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9b75121d6e1424d8158ef171e4f4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  fishPrefabs:
+  - {fileID: -9106373938702970575, guid: 1967abc1067269f4aa5f2cb9f6d33fc9, type: 3}
+  - {fileID: 7288834100035718147, guid: c4b8120eb53b67e49b4b651a6fc380e8, type: 3}
+  - {fileID: -5151535262532159291, guid: 09bffd7d9ebbd82468b52bde43397512, type: 3}
+  - {fileID: 6295199908750376532, guid: ad7149b6022bde944bcd07f5a6a6602f, type: 3}
+  - {fileID: -6440681814241626239, guid: 66212e0bc75044e4996c7b7c0c077f4b, type: 3}
+  - {fileID: -959585127282625498, guid: b96984782df8b6a49b131f2bb3a867c6, type: 3}
+  - {fileID: -891329230572840607, guid: db02750e68f87ed449da4a3be2014aeb, type: 3}
+  - {fileID: 1256707772413658591, guid: d2c23aae5aba02544a49efd9bf9ba91f, type: 3}
+  - {fileID: -7252338828378722799, guid: c4e388f7b85f2354f9055d3e7ff4714a, type: 3}
+  fishCount: 11
 --- !u!4 &91176517
 Transform:
   m_ObjectHideFlags: 0

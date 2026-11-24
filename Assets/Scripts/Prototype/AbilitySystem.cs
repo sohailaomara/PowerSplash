@@ -89,6 +89,7 @@ public class AbilitySystem : MonoBehaviour
         if (t == AbilityType.None) return;
         Stored = t;
         GameHUD.Message("Ability gained: " + t + "  -  press F to use it!", 3.5f);
+        StoryAudio.Play(StorySfx.AbilityGain);
         Fx.Flash(transform.position, new Color(1f, 0.85f, 0.3f), 14f, 6f, 0.5f);
     }
 
@@ -152,7 +153,7 @@ public class AbilitySystem : MonoBehaviour
                 Inflated = true;
                 data.sizeTier += 1;
                 Fx.Burst(pos, new Color(0.8f, 0.95f, 1f, 0.9f), 30, 0.5f, 5f, 1f);
-                GameHUD.Message("INFLATE! Predators won't dare attack you", 3f);
+                StoryAudio.Play(StorySfx.Inflate); GameHUD.Message("INFLATE! Predators won't dare attack you", 3f);
                 break;
 
             case AbilityType.InkCloud:
@@ -160,7 +161,7 @@ public class AbilitySystem : MonoBehaviour
                 inkCloud = Fx.Emitter(transform, Vector3.zero, new Color(0.2f, 0.05f, 0.3f, 0.9f), 60f, 3.5f, 3f, 1.5f, 0.6f);
                 Fx.Burst(pos, new Color(0.15f, 0.05f, 0.25f, 0.95f), 40, 4f, 6f, 1.5f);
                 Fx.Flash(pos, new Color(0.5f, 0.2f, 0.9f), 16f, 5f, 0.4f);
-                GameHUD.Message("INK CLOUD! Predators lose track of you", 3f);
+                StoryAudio.Play(StorySfx.Ink); GameHUD.Message("INK CLOUD! Predators lose track of you", 3f);
                 break;
 
             case AbilityType.Shock:
@@ -170,13 +171,13 @@ public class AbilitySystem : MonoBehaviour
             case AbilityType.SpeedBoost:
                 ApplySpeed(true);
                 speedTrail = Fx.Emitter(transform, Vector3.zero, new Color(0.7f, 0.95f, 1f, 0.9f), 50f, 0.6f, 1.2f, 0.4f, 0.2f);
-                GameHUD.Message("SPEED BOOST!", 2.5f);
+                StoryAudio.Play(StorySfx.SpeedBoost); GameHUD.Message("SPEED BOOST!", 2.5f);
                 break;
 
             case AbilityType.Shield:
                 ShieldActive = true;
                 BuildShield();
-                GameHUD.Message("ELECTRIC DEFENSE! Predators that touch you get zapped", 3f);
+                StoryAudio.Play(StorySfx.Zap); GameHUD.Message("ELECTRIC DEFENSE! Predators that touch you get zapped", 3f);
                 break;
         }
     }
@@ -195,7 +196,7 @@ public class AbilitySystem : MonoBehaviour
         }
         Fx.Burst(pos, new Color(0.5f, 0.9f, 1f, 1f), 60, 0.5f, 18f, 0.8f);
         Fx.Flash(pos, new Color(0.5f, 0.9f, 1f), 40f, 14f, 0.7f);
-        GameHUD.Message("SHOCK! " + stunned + " creature(s) stunned - stunned fish can be eaten!", 3.5f);
+        StoryAudio.Play(StorySfx.Shock); GameHUD.Message("SHOCK! " + stunned + " creature(s) stunned - stunned fish can be eaten!", 3.5f);
     }
 
     private void BuildShield()
@@ -277,7 +278,7 @@ public class AbilitySystem : MonoBehaviour
         cooldowns[(int)ended] = GetDef(ended).cooldown;
         Active = AbilityType.None;
         ActiveRemaining = 0f;
-        GameHUD.Message(ended + " ended", 1.5f);
+        StoryAudio.Play(StorySfx.AbilityEnd); GameHUD.Message(ended + " ended", 1.5f);
     }
 
     private void StopEmitter(ref ParticleSystem ps)

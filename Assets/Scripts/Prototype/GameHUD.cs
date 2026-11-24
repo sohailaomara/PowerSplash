@@ -42,7 +42,7 @@ public class GameHUD : MonoBehaviour
     {
         Instance = this;
         Time.timeScale = 1f;
-        font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        font = StoryUI.BodyFont;
         BuildUI();
         locationBannerTimer = 4.5f;
     }
@@ -104,11 +104,14 @@ public class GameHUD : MonoBehaviour
     private void BuildLocationLabels(Transform root)
     {
         // Small label that stays on screen, top centre
+        Image unusedEdge;
+        StoryUI.MakeGlass("Location Panel", root, new Vector2(0.5f, 1f), new Vector2(0f, -14f), new Vector2(460f, 58f), new Color(0.02f, 0.09f, 0.15f, 0.62f), new Color(0.45f, 0.85f, 0.95f, 0.35f), out unusedEdge);
         locationText = MakeText("Location", root, new Vector2(0.5f, 1f), new Vector2(0f, -24f), new Vector2(900f, 44f), 34, TextAnchor.UpperCenter);
         locationText.color = new Color(0.75f, 0.95f, 1f);
 
         // Large title that appears when the level starts and fades out
         locationBanner = MakeText("Location Banner", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 230f), new Vector2(1600f, 220f), 84, TextAnchor.MiddleCenter);
+        AddOutline(locationBanner);
     }
 
     private void UpdateLocationLabel()
@@ -163,7 +166,7 @@ public class GameHUD : MonoBehaviour
         winPanel = new GameObject("Win Screen");
         winPanel.transform.SetParent(root, false);
         Image bg = winPanel.AddComponent<Image>();
-        bg.color = new Color(0.02f, 0.28f, 0.30f, 0.82f);
+        bg.color = new Color(0.02f, 0.18f, 0.26f, 0.86f);
         bg.raycastTarget = false;
         RectTransform rt = bg.rectTransform;
         rt.anchorMin = Vector2.zero;
@@ -175,6 +178,7 @@ public class GameHUD : MonoBehaviour
         Text title = MakeText("WinTitle", winPanel.transform, mid, new Vector2(0, 110), new Vector2(1500, 140), 110, TextAnchor.MiddleCenter);
         title.text = "YOU WIN!";
         title.color = new Color(1f, 0.87f, 0.3f);
+        AddOutline(title);
 
         Text sub = MakeText("WinSubtitle", winPanel.transform, mid, new Vector2(0, 10), new Vector2(1500, 60), 42, TextAnchor.MiddleCenter);
         sub.text = "You grew from the smallest fish to ruler of The Deep";
@@ -194,7 +198,7 @@ public class GameHUD : MonoBehaviour
         losePanel = new GameObject("Lose Screen");
         losePanel.transform.SetParent(root, false);
         Image bg = losePanel.AddComponent<Image>();
-        bg.color = new Color(0.45f, 0.02f, 0.02f, 0.78f);
+        bg.color = new Color(0.3f, 0.03f, 0.07f, 0.84f);
         bg.raycastTarget = false;
         RectTransform rt = bg.rectTransform;
         rt.anchorMin = Vector2.zero;
@@ -206,6 +210,7 @@ public class GameHUD : MonoBehaviour
         Text title = MakeText("LoseTitle", losePanel.transform, mid, new Vector2(0, 90), new Vector2(1500, 130), 100, TextAnchor.MiddleCenter);
         title.text = "YOU WERE EATEN!";
         title.color = new Color(1f, 0.85f, 0.8f);
+        AddOutline(title);
 
         loseDetailText = MakeText("LoseDetail", losePanel.transform, mid, new Vector2(0, -10), new Vector2(1500, 60), 38, TextAnchor.MiddleCenter);
 
@@ -297,6 +302,14 @@ public class GameHUD : MonoBehaviour
 
         Transform root = canvasGO.transform;
 
+        // glass panels behind the HUD blocks (same look as the main menu)
+        Image unused;
+        Color glassFill = new Color(0.02f, 0.09f, 0.15f, 0.62f);
+        Color glassEdge = new Color(0.45f, 0.85f, 0.95f, 0.35f);
+        StoryUI.MakeGlass("Stats Panel", root, new Vector2(0, 1), new Vector2(14, -14), new Vector2(580, 180), glassFill, glassEdge, out unused);
+        StoryUI.MakeGlass("Info Panel", root, new Vector2(1, 1), new Vector2(-14, -14), new Vector2(660, 130), glassFill, glassEdge, out unused);
+        StoryUI.MakeGlass("Help Panel", root, new Vector2(0, 0), new Vector2(14, 14), new Vector2(700, 128), glassFill, glassEdge, out unused);
+
         // Top-left: size + ability
         statsText = MakeText("Stats", root, new Vector2(0, 1), new Vector2(30, -30), new Vector2(620, 40), 30, TextAnchor.UpperLeft);
         growthFill = MakeBar("GrowthBar", root, new Vector2(0, 1), new Vector2(30, -78), new Vector2(420, 18), new Color(0.2f, 0.9f, 0.5f));
@@ -332,7 +345,7 @@ public class GameHUD : MonoBehaviour
         GameObject go = new GameObject(name);
         go.transform.SetParent(parent, false);
         Text t = go.AddComponent<Text>();
-        t.font = font;
+        t.font = fontSize >= 34 ? StoryUI.ThemeFont : font;   // display font for big text, rounded body font for the rest
         t.fontSize = fontSize;
         t.alignment = align;
         t.color = Color.white;
@@ -350,12 +363,22 @@ public class GameHUD : MonoBehaviour
         return t;
     }
 
+    /// <summary>Dark navy outline so big titles stay readable over any water colour (same as the main menu title).</summary>
+    private static void AddOutline(Text t)
+    {
+        Outline o = t.gameObject.AddComponent<Outline>();
+        o.effectColor = new Color(0.01f, 0.07f, 0.15f, 1f);
+        o.effectDistance = new Vector2(4f, -4f);
+    }
+
     private RectTransform MakeBar(string name, Transform parent, Vector2 anchor, Vector2 pos, Vector2 size, Color fillColor)
     {
         GameObject bg = new GameObject(name + " BG");
         bg.transform.SetParent(parent, false);
         Image bgImg = bg.AddComponent<Image>();
-        bgImg.color = new Color(0f, 0f, 0f, 0.55f);
+        bgImg.color = new Color(0f, 0.04f, 0.09f, 0.7f);
+        bgImg.sprite = MenuArt.Rounded;
+        bgImg.type = Image.Type.Sliced;
         bgImg.raycastTarget = false;
         RectTransform bgRt = bgImg.rectTransform;
         bgRt.anchorMin = bgRt.anchorMax = anchor;
@@ -367,6 +390,8 @@ public class GameHUD : MonoBehaviour
         fill.transform.SetParent(bg.transform, false);
         Image fImg = fill.AddComponent<Image>();
         fImg.color = fillColor;
+        fImg.sprite = MenuArt.Rounded;
+        fImg.type = Image.Type.Sliced;
         fImg.raycastTarget = false;
         RectTransform fRt = fImg.rectTransform;
         fRt.anchorMin = new Vector2(0, 0);

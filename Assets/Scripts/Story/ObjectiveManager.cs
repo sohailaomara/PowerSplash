@@ -59,12 +59,17 @@ public class ObjectiveManager : MonoBehaviour
         Transform root = canvasGO.transform;
 
         Vector2 topRight = new Vector2(1f, 1f);
-        border = StoryUI.MakeImage("Objective Border", root, topRight, new Vector2(-30f, -150f), new Vector2(566f, 146f), new Color(0.35f, 0.85f, 0.95f, 0.5f));
-        Image bg = StoryUI.MakeImage("Objective Panel", border.transform, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(560f, 140f), new Color(0.02f, 0.07f, 0.13f, 0.82f));
+        border = StoryUI.MakeImage("Objective Border", root, topRight, new Vector2(-14f, -150f), new Vector2(566f, 146f), new Color(0.35f, 0.85f, 0.95f, 0.5f));
+        border.sprite = MenuArt.Panel;
+        border.type = Image.Type.Sliced;
+        Image bg = StoryUI.MakeImage("Objective Panel", border.transform, new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(560f, 140f), new Color(0.02f, 0.08f, 0.14f, 0.86f));
+        bg.sprite = MenuArt.Panel;
+        bg.type = Image.Type.Sliced;
 
         Text header = StoryUI.MakeText("Objective Header", bg.transform, new Vector2(0f, 1f), new Vector2(16f, -10f), new Vector2(400f, 26f), 20, TextAnchor.UpperLeft);
         header.text = "OBJECTIVE";
         header.color = new Color(0.5f, 0.92f, 1f);
+        header.font = StoryUI.ThemeFont;
 
         bodyText = StoryUI.MakeText("Objective Text", bg.transform, new Vector2(0f, 1f), new Vector2(16f, -38f), new Vector2(528f, 70f), 25, TextAnchor.UpperLeft, true);
 

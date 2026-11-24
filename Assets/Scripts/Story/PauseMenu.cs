@@ -27,6 +27,9 @@ public class PauseMenu : MonoBehaviour
         Text title = StoryUI.MakeText("Title", root, new Vector2(0.5f, 0.5f), new Vector2(0f, 250f), new Vector2(900f, 140f), 100, TextAnchor.MiddleCenter);
         title.text = "PAUSED";
         title.color = new Color(1f, 0.9f, 0.4f);
+        Outline titleOutline = title.gameObject.AddComponent<Outline>();
+        titleOutline.effectColor = new Color(0.01f, 0.07f, 0.15f, 1f);
+        titleOutline.effectDistance = new Vector2(5f, -5f);
 
         string[] names = { "RESUME", "RESTART FROM LEVEL 1", "MAIN MENU", "QUIT GAME" };
         System.Action[] actions = { Resume, RestartGame, GoToMainMenu, QuitGame };

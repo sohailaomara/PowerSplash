@@ -32,13 +32,15 @@ public class DialogueUI : MonoBehaviour
         Transform root = canvasGO.transform;
 
         Vector2 bottom = new Vector2(0.5f, 0f);
-        Image panel = StoryUI.MakeImage("Dialogue Panel", root, bottom, new Vector2(0f, 40f), new Vector2(1560f, 270f), new Color(0.02f, 0.07f, 0.13f, 0.94f));
-        StoryUI.MakeImage("Accent", panel.transform, new Vector2(0.5f, 1f), Vector2.zero, new Vector2(1560f, 5f), new Color(0.35f, 0.85f, 0.95f, 1f));
+        Image panelEdge;
+        Image panel = StoryUI.MakeGlass("Dialogue Panel", root, bottom, new Vector2(0f, 40f), new Vector2(1560f, 270f), new Color(0.02f, 0.08f, 0.14f, 0.93f), new Color(0.45f, 0.85f, 0.95f, 0.85f), out panelEdge);
 
         Vector2 left = new Vector2(0f, 0.5f);
         portraitFrame = StoryUI.MakeImage("Portrait Frame", panel.transform, left, new Vector2(28f, 0f), new Vector2(216f, 216f), new Color(0.35f, 0.85f, 0.95f, 1f));
         portrait = StoryUI.MakeImage("Portrait", panel.transform, left, new Vector2(34f, 0f), new Vector2(204f, 204f), Color.white);
         portrait.preserveAspect = true;
+        portraitFrame.sprite = MenuArt.Panel;
+        portraitFrame.type = Image.Type.Sliced;
 
         Vector2 topLeft = new Vector2(0f, 1f);
         speakerText = StoryUI.MakeText("Speaker", panel.transform, topLeft, new Vector2(276f, -22f), new Vector2(1000f, 44f), 38, TextAnchor.UpperLeft);
@@ -49,7 +51,9 @@ public class DialogueUI : MonoBehaviour
 
         for (int i = 0; i < MaxChoices; i++)
         {
-            Image bg = StoryUI.MakeImage("Choice " + i, root, bottom, new Vector2(0f, 330f), new Vector2(1200f, 58f), new Color(0.04f, 0.14f, 0.22f, 0.95f));
+            Image bg = StoryUI.MakeImage("Choice " + i, root, bottom, new Vector2(0f, 330f), new Vector2(1200f, 58f), new Color(0.03f, 0.16f, 0.24f, 0.92f));
+            bg.sprite = MenuArt.Rounded;
+            bg.type = Image.Type.Sliced;
             Text t = StoryUI.MakeText("Choice Text", bg.transform, left, new Vector2(24f, 0f), new Vector2(1150f, 50f), 30, TextAnchor.MiddleLeft);
             choiceBgs.Add(bg);
             choiceTexts.Add(t);
@@ -90,8 +94,8 @@ public class DialogueUI : MonoBehaviour
         for (int i = 0; i < choiceCount; i++)
         {
             bool on = i == selected;
-            choiceBgs[i].color = on ? new Color(0.12f, 0.45f, 0.6f, 0.97f) : new Color(0.04f, 0.14f, 0.22f, 0.95f);
-            choiceTexts[i].color = on ? new Color(1f, 0.95f, 0.5f) : Color.white;
+            choiceBgs[i].color = on ? new Color(0.42f, 0.9f, 1f, 0.97f) : new Color(0.03f, 0.16f, 0.24f, 0.92f);
+            choiceTexts[i].color = on ? new Color(0.03f, 0.1f, 0.18f, 1f) : Color.white;
         }
     }
 

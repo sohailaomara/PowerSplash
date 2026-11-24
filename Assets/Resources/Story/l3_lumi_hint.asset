@@ -15,7 +15,7 @@ MonoBehaviour:
   presentation: 0
   lines:
   - speaker: Lumi
-    portrait: {fileID: 1097298525319628428, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
+    portrait: {fileID: 21300000, guid: 25d3a49108ae92346a5bb5a64d9c8721, type: 3}
     text: Three pearls, tang. Three. Hurry, the Deep does not stay quiet for long.
   choices: []
   flagToSetWhenFinished: 

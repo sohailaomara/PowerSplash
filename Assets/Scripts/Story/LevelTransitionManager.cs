@@ -179,12 +179,16 @@ public class LevelTransitionManager : MonoBehaviour
 
         titleText = StoryUI.MakeText("Title", root, mid, new Vector2(0f, 270f), new Vector2(1600f, 220f), 80, TextAnchor.MiddleCenter);
         titleText.color = new Color(1f, 0.9f, 0.4f);
+        Outline titleOutline = titleText.gameObject.AddComponent<Outline>();
+        titleOutline.effectColor = new Color(0.01f, 0.07f, 0.15f, 1f);
+        titleOutline.effectDistance = new Vector2(5f, -5f);
 
         Text recapHeader = StoryUI.MakeText("Recap Header", root, mid, new Vector2(0f, 120f), new Vector2(1200f, 40f), 26, TextAnchor.MiddleCenter);
         recapHeader.text = "THE STORY SO FAR";
         recapHeader.color = new Color(0.5f, 0.92f, 1f);
 
         recapText = StoryUI.MakeText("Recap", root, mid, new Vector2(0f, -30f), new Vector2(1250f, 260f), 34, TextAnchor.UpperCenter, true);
+        recapText.font = StoryUI.BodyFont;
         recapText.rectTransform.pivot = new Vector2(0.5f, 1f);
         recapText.rectTransform.anchoredPosition = new Vector2(0f, 90f);
 
