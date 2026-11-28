@@ -14,7 +14,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class FishSwimAnimator : MonoBehaviour
 {
-    public enum HeadAxis { Auto, PlusZ, MinusZ, PlusX, MinusX }
+    public enum HeadAxis { Auto, PlusZ, MinusZ, PlusX, MinusX, PlusY, MinusY }
 
     [Header("Model orientation")]
     [Tooltip("Which local axis the model's head points along. Auto only corrects models that clearly lie sideways.")]
@@ -187,11 +187,19 @@ public class FishSwimAnimator : MonoBehaviour
         {
             Bounds lb = LocalBounds(parts);
             // Only models that clearly lie sideways (long axis along local X) are turned; the rest were set up facing +Z.
-            if (lb.size.x > lb.size.z * 1.15f) head = Vector3.right * DetectHeadSignAlongX(parts, lb);
+            if (lb.size.x > lb.size.z * 1.15f && lb.size.x >= lb.size.y) head = Vector3.right * DetectHeadSignAlongX(parts, lb);
+            // Models exported standing on their tail (long axis along local Y, like the Great White) would swim nose-up.
+            else if (lb.size.y > Mathf.Max(lb.size.x, lb.size.z) * 1.15f) head = Vector3.up * DetectHeadSignAlongY(parts, lb);
         }
 
         HeadLocal = head;
-        if (head != Vector3.forward) headOffset = Quaternion.FromToRotation(head, Vector3.forward);
+        if (Mathf.Abs(head.y) > 0.5f)
+        {
+            // head along local Y: also keep the back (dorsal fin) pointing up, otherwise the shark swims upside down
+            Vector3 upLocal = Vector3.forward * DetectUpSignForY(parts, parts.Count > 0 ? LocalBounds(parts) : new Bounds());
+            headOffset = Quaternion.Inverse(Quaternion.LookRotation(head, upLocal));
+        }
+        else if (head != Vector3.forward) headOffset = Quaternion.FromToRotation(head, Vector3.forward);
 
         // start out heading where the model's head currently points
         heading = Vector3.Normalize(transform.rotation * (Quaternion.Inverse(headOffset) * Vector3.forward));
@@ -262,6 +270,68 @@ public class FishSwimAnimator : MonoBehaviour
         return (posMax - posMin) >= (negMax - negMin) ? 1f : -1f;
     }
 
+    /// <summary>+1 if the head is toward +Y, -1 if toward -Y (eye objects, otherwise +Y).</summary>
+    private float DetectHeadSignAlongY(List<Part> parts, Bounds lb)
+    {
+        Vector3 eyeSum = Vector3.zero;
+        int eyes = 0;
+        foreach (Transform t in GetComponentsInChildren<Transform>())
+        {
+            if (t != transform && t.name.ToLowerInvariant().Contains("eye"))
+            {
+                eyeSum += transform.InverseTransformPoint(t.position);
+                eyes++;
+            }
+        }
+        if (eyes > 0)
+        {
+            float d = (eyeSum / eyes - lb.center).y;
+            if (Mathf.Abs(d) > lb.size.y * 0.05f) return Mathf.Sign(d);
+        }
+        return 1f;
+    }
+
+    /// <summary>For a model whose head is along local Y: +1 if its back (the side the dorsal fin sticks out to) is +Z, else -1.</summary>
+    private float DetectUpSignForY(List<Part> parts, Bounds lb)
+    {
+        // eyes sit above the middle of the body, so they say which side is up
+        Vector3 eyeSum = Vector3.zero;
+        int eyes = 0;
+        foreach (Transform t in GetComponentsInChildren<Transform>())
+        {
+            if (t != transform && t.name.ToLowerInvariant().Contains("eye"))
+            {
+                eyeSum += transform.InverseTransformPoint(t.position);
+                eyes++;
+            }
+        }
+        if (eyes > 0)
+        {
+            float d = (eyeSum / eyes - lb.center).z;
+            if (Mathf.Abs(d) > lb.size.z * 0.05f) return Mathf.Sign(d);
+        }
+
+        double sum = 0;
+        int n = 0;
+        float minZ = float.MaxValue, maxZ = float.MinValue;
+        foreach (Part p in parts)
+        {
+            if (!p.mesh.isReadable) continue;
+            Vector3[] vs = p.mesh.vertices;
+            int stride = Mathf.Max(1, vs.Length / 1500);
+            for (int i = 0; i < vs.Length; i += stride)
+            {
+                float z = transform.InverseTransformPoint(p.t.TransformPoint(vs[i])).z;
+                sum += z; n++;
+                minZ = Mathf.Min(minZ, z);
+                maxZ = Mathf.Max(maxZ, z);
+            }
+        }
+        if (n < 20) return 1f;
+        float mean = (float)(sum / n);
+        return (maxZ - mean) >= (mean - minZ) ? 1f : -1f;
+    }
+
     private static Vector3 AxisVector(HeadAxis a)
     {
         switch (a)
@@ -269,6 +339,8 @@ public class FishSwimAnimator : MonoBehaviour
             case HeadAxis.MinusZ: return Vector3.back;
             case HeadAxis.PlusX: return Vector3.right;
             case HeadAxis.MinusX: return Vector3.left;
+            case HeadAxis.PlusY: return Vector3.up;
+            case HeadAxis.MinusY: return Vector3.down;
             default: return Vector3.forward;
         }
     }
